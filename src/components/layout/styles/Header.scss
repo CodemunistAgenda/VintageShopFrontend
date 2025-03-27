@@ -1,4 +1,9 @@
 // Header.scss - Minimales Styling für den Header
+@use '../../../styles/abstracts/mixins' as *;
+@use '../../../styles/abstracts/variables' as *;
+@use '../../../styles/base/animations' as *;
+@use '../../../styles/base/reset' as *;
+@use '../../../styles/base/typography' as *;
 
 .site-header {
   width: 100%;

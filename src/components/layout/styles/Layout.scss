@@ -1,4 +1,9 @@
 // Layout.scss - Grundlegendes Layout mit statischem Footer
+@use '../../../styles/abstracts/mixins' as *;
+@use '../../../styles/abstracts/variables' as *;
+@use '../../../styles/base/animations' as *;
+@use '../../../styles/base/reset' as *;
+@use '../../../styles/base/typography' as *;
 
 .layout-container {
   position: relative;

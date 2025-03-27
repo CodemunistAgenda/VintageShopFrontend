@@ -1,8 +1,73 @@
+// _mixins.scss - Standardisierte Mixins für das gesamte Projekt
+
 // Responsive Breakpoints Mixin
 @mixin respond-to($breakpoint) {
-  @if $breakpoint == medium {
+  @if $breakpoint == large {
+    @media (max-width: 1600px) {
+      @content;
+    }
+  } @else if $breakpoint == medium {
     @media (max-width: 1440px) {
       @content;
     }
+  } @else if $breakpoint == small {
+    @media (max-width: 600px) {
+      @content;
+    }
+  }
+}
+
+// Zentrierte Ausrichtung Mixin
+@mixin center($type: both) {
+  @if $type == horizontal {
+    margin-left: auto;
+    margin-right: auto;
+  } @else if $type == vertical {
+    display: flex;
+    align-items: center;
+  } @else if $type == both {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+// Textkürzung Mixin
+@mixin text-truncate {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+// Box-Schatten Mixin
+@mixin box-shadow($x: 0px, $y: 2px, $blur: 5px, $spread: 0, $color: rgba(0, 0, 0, 0.2)) {
+  box-shadow: $x $y $blur $spread $color;
+}
+
+// Flex-Container Mixin
+@mixin flex($direction: row, $wrap: nowrap, $justify: flex-start, $align: stretch) {
+  display: flex;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+// Transitions Mixin
+@mixin transition($property: all, $duration: 0.3s, $timing: ease) {
+  transition: $property $duration $timing;
+}
+
+// Border-Radius Mixin
+@mixin border-radius($radius: 4px) {
+  border-radius: $radius;
+}
+
+// Clearfix Mixin
+@mixin clearfix {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
   }
 }

@@ -1,14 +1,9 @@
+// Navigation.scss - Styles für die Navigation im Retro-Vintage-Stil
+@use '../../../styles/abstracts/mixins' as *;
+@use '../../../styles/abstracts/variables' as *;
+
 // Vintage-inspirierte Schriftarten
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap');
-
-// Einfaches Mixins direkt in der Datei definieren
-@mixin respond-to($breakpoint) {
-  @if $breakpoint == medium {
-    @media (max-width: 900px) {
-      @content;
-    }
-  }
-}
 
 // Navigation Header
 .navigation-header {

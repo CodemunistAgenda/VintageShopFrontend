@@ -1,18 +1,9 @@
-// Footer Stylesheet für Retroy im Vintage-Stil
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap');
+// Footer.scss - Styles für den Footer im Retro-Vintage-Stil
+@use '../../../styles/abstracts/mixins' as *;
+@use '../../../styles/abstracts/variables' as *;
 
-// Einfaches Responsive Mixin
-@mixin respond-to($breakpoint) {
-  @if $breakpoint == medium {
-    @media (max-width: 900px) {
-      @content;
-    }
-  } @else if $breakpoint == small {
-    @media (max-width: 600px) {
-      @content;
-    }
-  }
-}
+// Vintage-inspirierte Schriftarten
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap');
 
 .footer {
   position: relative;

@@ -1,18 +1,77 @@
+// _variables.scss - Standardisierte Variablen für das gesamte Projekt
+
 :root {
-  /* Main-Colors */
-  --primary-color: #d9a441;
-  --secondary-color: #c2d941;
-  --accent-color: #d95841;
-  /* --------------------------- */
-  /* Info-Colors for Message's */
-  --warning-color: #ffc107;
-  --danger-color: #dc3545;
-  /* --------------------------- */
-  /* Dark-Light Color Standarts */
+  // Hauptfarben
+  --primary-color: #d9a441; // Gold/Gelb
+  --secondary-color: #c2d941; // Grünlich
+  --accent-color: #d95841; // Orange/Rot
+  
+  // Spezielle Farben für Sektionen
+  --light-blue: #b2ddea; // Hellblau für Hero-Bereich
+  --purple: #5c5294; // Lila/Violett für bestimmte Sektionen
+  
+  // Neutrale Farben
   --light-color: #f8f9fa;
   --dark-color: #343a40;
   --white-color: #ffffff;
   --black-color: #16171a;
+  
+  // Transparente Varianten
+  --primary-transparent: rgba(217, 164, 65, 0.1);
+  --light-blue-transparent: rgba(178, 221, 234, 0.8);
+  --purple-transparent: rgba(92, 82, 148, 0.8);
+  
+  // Layout-Variablen
   --header-height: 100px;
-  /* --------------------------- */
+  --header-height-scrolled: 70px;
+  
+  // Abstände
+  --section-padding-large: 4rem;
+  --section-padding-medium: 3rem;
+  --section-padding-small: 2rem;
+  
+  // Container-Größen
+  --container-width: 1400px;
+  --container-padding: 2rem;
+  
+  // Radiuswerte
+  --border-radius-small: 4px;
+  --border-radius-medium: 8px;
+  --border-radius-large: 12px;
+  --border-radius-circle: 50%;
+  
+  // Schattenwerte
+  --shadow-light: 0 2px 5px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 4px 10px rgba(0, 0, 0, 0.1);
+  --shadow-strong: 0 8px 16px rgba(0, 0, 0, 0.1);
+  
+  // Übergangswerte
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.4s ease;
+  
+  // Schriftfamilien
+  --font-family-heading: 'Playfair Display', serif;
+  --font-family-body: 'Raleway', sans-serif;
+  
+  // Schriftgrößen
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
 }
+
+// SCSS-Variablen (für darken/lighten Funktionen)
+$primary-color: #d9a441;
+$secondary-color: #c2d941;
+$accent-color: #d95841;
+$light-blue: #b2ddea;
+$purple: #5c5294;
+$light-color: #f8f9fa;
+$dark-color: #343a40;
+$white-color: #ffffff;
+$black-color: #16171a;
