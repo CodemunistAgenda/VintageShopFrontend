@@ -1,0 +1,8 @@
+// Responsive Breakpoints Mixin
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == medium {
+    @media (max-width: 1440px) {
+      @content;
+    }
+  }
+}

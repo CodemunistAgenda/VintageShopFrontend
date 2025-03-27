@@ -319,21 +319,6 @@ Dieses Dokument beschreibt das vollständige Design-System für die Retroy-Platt
 Alle Design-Elemente werden als SCSS-Variablen definiert:
 
 ```scss
-// Primärfarben
-$color-burnt-orange: #C26A42;
-$color-muted-mustard: #D9A441;
-$color-deep-mahogany: #5E2B20;
-$color-faded-olive: #807B50;
-$color-warm-beige: #E4C9A0;
-$color-vintage-rust: #9B3D30;
-
-// Neutral
-$color-neutral-dark: #2C231D;
-$color-neutral-medium: #8C7A6B;
-$color-neutral-light: #F5F1EA;
-
-// Funktional
-$color-success: #5B7F65;
 
 // Typografie
 $font-heading: 'Freight Text Pro', serif;
@@ -394,6 +379,6 @@ Komponenten werden nach BEM-Methodik modular strukturiert:
 
 ---
 
-![Colors](image.png)
+![Colors](./src/assets/Analog.png)
 
 Dieses finale Design-System bildet die Grundlage für die konsistente Entwicklung aller digitalen Berührungspunkte der Retroy-Plattform. Es verkörpert die Markenwerte Nachhaltigkeit, Qualität und Individualität und bietet gleichzeitig ein intuitives, ansprechendes Nutzererlebnis.
