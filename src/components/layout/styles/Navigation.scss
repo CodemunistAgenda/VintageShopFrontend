@@ -1,9 +1,9 @@
 // Navigation.scss - Styles für die Navigation im Retro-Vintage-Stil
-@use '../../../styles/abstracts/mixins' as *;
-@use '../../../styles/abstracts/variables' as *;
+@use "../../../styles/abstracts/mixins" as *;
+@use "../../../styles/abstracts/variables" as *;
 
 // Vintage-inspirierte Schriftarten
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap");
 
 // Navigation Header
 .navigation-header {
@@ -17,51 +17,52 @@
   border-bottom: 2px solid var(--primary-color);
   height: var(--header-height, 100px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0);
-  
+
   // Scrolled-Zustand (minimal gescrollt)
   &.scrolled {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    
+
     .logo-tagline {
       opacity: 0;
       height: 0;
     }
-    
+
     .logo-text {
       transform: scale(0.9);
     }
   }
-  
+
   // Transparenter Zustand (weiter nach unten gescrollt)
   &.transparent {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     height: 70px; // Reduzierte Höhe
     border-bottom-color: rgba(217, 164, 65, 0.3); // Subtilere Randfarbe
-    
+
     .navigation-container {
       padding-top: 0;
       padding-bottom: 0;
     }
-    
-    .nav-link, .dropdown-toggle {
+
+    .nav-link,
+    .dropdown-toggle {
       padding-top: 1.2rem;
       padding-bottom: 1.2rem;
       font-size: 0.9rem;
     }
-    
+
     .logo-text {
       font-size: 1.8rem;
       transform: scale(0.85);
     }
-    
+
     .action-button {
       width: 35px;
       height: 35px;
     }
   }
-  
+
   .navigation-container {
     max-width: 1400px;
     margin: 0 auto;
@@ -71,7 +72,7 @@
     justify-content: space-between;
     position: relative;
     transition: padding 0.3s ease;
-    
+
     @include respond-to(medium) {
       padding: 0.5rem 1rem;
     }
@@ -82,37 +83,37 @@
 .logo-container {
   flex-shrink: 0;
   padding: 0.5rem 0;
-  
+
   .logo {
     text-decoration: none;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     transition: transform 0.3s ease;
-    
+
     &:hover {
       transform: translateY(-2px);
-      
+
       .logo-text .logo-y {
         color: var(--accent-color);
         transform: translateY(-2px);
       }
     }
   }
-  
+
   .logo-text {
-    font-family: 'Playfair Display', serif;
+    font-family: "Playfair Display", serif;
     font-weight: 700;
     font-size: 2.2rem;
     line-height: 1;
     transition: all 0.3s ease;
-    
+
     .logo-retro {
       color: var(--dark-color);
       position: relative;
-      
+
       &::after {
-        content: '';
+        content: "";
         position: absolute;
         bottom: 0;
         left: 0;
@@ -124,7 +125,7 @@
         transition: transform 0.3s ease;
       }
     }
-    
+
     .logo-y {
       color: var(--primary-color);
       transition: all 0.3s ease;
@@ -132,9 +133,9 @@
       display: inline-block;
     }
   }
-  
+
   .logo-tagline {
-    font-family: 'Raleway', sans-serif;
+    font-family: "Raleway", sans-serif;
     font-weight: 300;
     font-size: 0.9rem;
     color: var(--dark-color);
@@ -153,7 +154,7 @@
   cursor: pointer;
   padding: 10px;
   z-index: 20;
-  
+
   span {
     display: block;
     width: 28px;
@@ -162,21 +163,21 @@
     margin: 5px 0;
     transition: all 0.3s ease;
   }
-  
+
   &.active {
     span:nth-child(1) {
       transform: rotate(45deg) translate(6px, 6px);
     }
-    
+
     span:nth-child(2) {
       opacity: 0;
     }
-    
+
     span:nth-child(3) {
       transform: rotate(-45deg) translate(6px, -6px);
     }
   }
-  
+
   @include respond-to(medium) {
     display: block;
   }
@@ -189,7 +190,7 @@
   justify-content: space-between;
   flex-grow: 1;
   transition: all 0.3s ease;
-  
+
   @include respond-to(medium) {
     position: fixed;
     top: 0;
@@ -204,7 +205,7 @@
     transition: right 0.3s ease;
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
-    
+
     &.open {
       right: 0;
     }
@@ -217,48 +218,48 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  
+
   @include respond-to(medium) {
     flex-direction: column;
     width: 100%;
   }
-  
+
   .nav-item {
     position: relative;
     margin: 0 0.2rem;
-    
+
     @include respond-to(medium) {
       margin: 0;
       width: 100%;
       border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     }
-    
+
     &.dropdown {
       &.active .dropdown-menu {
         visibility: visible;
         opacity: 1;
         transform: translateY(0);
         pointer-events: auto;
-        
+
         @include respond-to(medium) {
           max-height: 500px;
           padding: 0.5rem 0;
         }
       }
-      
+
       &.active .dropdown-toggle .dropdown-icon {
         transform: rotate(180deg);
       }
     }
   }
-  
+
   .nav-link {
     display: flex;
     align-items: center;
     padding: 1.5rem 1rem;
     color: var(--dark-color);
     text-decoration: none;
-    font-family: 'Raleway', sans-serif;
+    font-family: "Raleway", sans-serif;
     font-size: 1rem;
     font-weight: 600;
     letter-spacing: 0.5px;
@@ -266,18 +267,19 @@
     transition: all 0.3s ease;
     position: relative;
     white-space: nowrap;
-    
+
     @include respond-to(medium) {
       padding: 1rem 0;
       font-size: 1.1rem;
     }
-    
-    &:hover, &:focus {
+
+    &:hover,
+    &:focus {
       color: var(--primary-color);
     }
-    
+
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: 1.2rem;
       left: 1rem;
@@ -287,19 +289,19 @@
       transform: scaleX(0);
       transform-origin: center;
       transition: transform 0.3s ease;
-      
+
       @include respond-to(medium) {
         bottom: 0.8rem;
         left: 0;
         width: 100%;
       }
     }
-    
+
     &:hover::after {
       transform: scaleX(1);
     }
   }
-  
+
   .dropdown-toggle {
     cursor: pointer;
     background: none;
@@ -316,19 +318,20 @@
     position: relative;
     white-space: nowrap;
     transition: all 0.3s ease;
-    
+
     @include respond-to(medium) {
       width: 100%;
       padding: 1rem 0;
       justify-content: space-between;
     }
-    
-    &:hover, &:focus {
+
+    &:hover,
+    &:focus {
       color: var(--primary-color);
     }
-    
+
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: 1.2rem;
       left: 1rem;
@@ -338,18 +341,18 @@
       transform: scaleX(0);
       transform-origin: center;
       transition: transform 0.3s ease;
-      
+
       @include respond-to(medium) {
         bottom: 0.8rem;
         left: 0;
         width: calc(100% - 24px);
       }
     }
-    
+
     &:hover::after {
       transform: scaleX(1);
     }
-    
+
     .dropdown-icon {
       margin-left: 0.5rem;
       transition: transform 0.3s ease;
@@ -376,9 +379,9 @@
   transition: all 0.3s ease;
   z-index: 10;
   pointer-events: none;
-  
+
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 2rem;
@@ -386,7 +389,7 @@
     height: 3px;
     background: var(--primary-color);
   }
-  
+
   @include respond-to(medium) {
     position: static;
     box-shadow: none;
@@ -399,52 +402,54 @@
     overflow: hidden;
     transition: max-height 0.3s ease, padding 0.3s ease;
     padding: 0;
-    
+
     &::before {
       display: none;
     }
   }
-  
+
   .category-title {
     padding: 0.5rem 1.5rem;
-    font-family: 'Playfair Display', serif;
+    font-family: "Playfair Display", serif;
     font-size: 1.1rem;
     color: var(--dark-color);
     font-weight: 700;
+    list-style-type: none;
     border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
     margin-bottom: 0.5rem;
   }
-  
+
   .dropdown-item {
+    list-style-type: none;
     padding: 0;
-    
+
     .dropdown-link {
       display: flex;
       align-items: center;
       padding: 0.7rem 1.5rem;
       color: var(--dark-color);
       text-decoration: none;
-      font-family: 'Raleway', sans-serif;
+      font-family: "Raleway", sans-serif;
       font-size: 0.95rem;
       transition: all 0.2s ease;
       position: relative;
-      
+
       &:hover {
         background-color: rgba(0, 0, 0, 0.03);
         color: var(--primary-color);
         padding-left: 1.8rem;
       }
-      
+
       &.view-all {
         font-weight: 600;
         color: var(--primary-color);
-        
+
         &:hover {
           background-color: var(--primary-color);
           color: var(--white-color);
         }
       }
-      
+
       .link-icon {
         width: 20px;
         height: 20px;
@@ -453,8 +458,9 @@
       }
     }
   }
-  
+
   .dropdown-divider {
+    list-style-type: none;
     height: 1px;
     background-color: rgba(0, 0, 0, 0.1);
     margin: 0.5rem 0;
@@ -467,7 +473,7 @@
   align-items: center;
   margin-left: 2rem;
   transition: all 0.3s ease;
-  
+
   @include respond-to(medium) {
     margin: 2rem 0 0;
     width: 100%;
@@ -475,7 +481,7 @@
     padding-top: 1.5rem;
     border-top: 1px dashed rgba(0, 0, 0, 0.1);
   }
-  
+
   .action-button {
     position: relative;
     display: flex;
@@ -488,25 +494,25 @@
     background-color: rgba(0, 0, 0, 0.03);
     color: var(--dark-color);
     transition: all 0.3s ease;
-    
+
     @include respond-to(medium) {
       width: 50px;
       height: 50px;
       margin: 0;
     }
-    
+
     &:hover {
       background-color: var(--primary-color);
       color: var(--white-color);
       transform: translateY(-2px);
     }
-    
+
     svg {
       width: 18px;
       height: 18px;
       transition: all 0.3s ease;
     }
-    
+
     .badge {
       position: absolute;
       top: -5px;

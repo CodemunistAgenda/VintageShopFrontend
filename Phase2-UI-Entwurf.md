@@ -6,379 +6,686 @@ Dieses Dokument beschreibt das vollständige Design-System für die Retroy-Platt
 
 ## Farbpalette mit Anwendungsbereichen
 
-### Primärfarben
+### CSS-Variablen
 
-- **Verbranntes Orange (#C26A42)**
-  - Primäre Call-to-Action-Buttons
-  - Hauptnavigations-Aktivzustand
-  - Wichtige interaktive Elemente
-  - Hervorgehobene Produktmerkmale
-  - Preisinformationen bei Rabatten
+```scss
+:root {
+  // Hauptfarben
+  --primary-color: #d9a441; // Gold/Gelb
+  --secondary-color: #c2d941; // Grünlich
+  --accent-color: #d95841; // Orange/Rot
+  
+  // Spezielle Farben für Sektionen
+  --light-blue: #b2ddea; // Hellblau für Hero-Bereich
+  --purple: #5c5294; // Lila/Violett für bestimmte Sektionen
+  
+  // Neutrale Farben
+  --light-color: #f8f9fa;
+  --dark-color: #343a40;
+  --white-color: #ffffff;
+  --black-color: #16171a;
+  
+  // Transparente Varianten
+  --primary-transparent: rgba(217, 164, 65, 0.1);
+  --light-blue-transparent: rgba(178, 221, 234, 0.8);
+  --purple-transparent: rgba(92, 82, 148, 0.8);
+  
+  // Layout-Variablen
+  --header-height: 100px;
+  --header-height-scrolled: 70px;
+  
+  // Abstände
+  --section-padding-large: 4rem;
+  --section-padding-medium: 3rem;
+  --section-padding-small: 2rem;
+  
+  // Container-Größen
+  --container-width: 1400px;
+  --container-padding: 2rem;
+  
+  // Radiuswerte
+  --border-radius-small: 4px;
+  --border-radius-medium: 8px;
+  --border-radius-large: 12px;
+  --border-radius-circle: 50%;
+  
+  // Schattenwerte
+  --shadow-light: 0 2px 5px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 4px 10px rgba(0, 0, 0, 0.1);
+  --shadow-strong: 0 8px 16px rgba(0, 0, 0, 0.1);
+  
+  // Übergangswerte
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.4s ease;
+  
+  // Schriftfamilien
+  --font-family-heading: 'Playfair Display', serif;
+  --font-family-body: 'Raleway', sans-serif;
+  
+  // Schriftgrößen
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+}
+```
 
-- **Gedämpftes Senfgelb (#D9A441)**
-  - Sekundäre Buttons und Interaktionselemente
-  - Aufmerksamkeitserregende Akzente
-  - Ausgewählte Filter und Kategorien
-  - Warnmeldungen und Hinweise
-  - Dekorative Elemente bei Premium-Artikeln
+### SCSS-Variablen (für darken/lighten Funktionen)
 
-- **Tiefes Mahagonibraun (#5E2B20)**
-  - Hauptüberschriften (H1, H2)
-  - Produktnamen und wichtige Bezeichnungen
-  - Footer-Hintergrund
-  - Rahmen für hochwertige Produkte
-  - Designelemente für Exklusiv-Kollektionen
+```scss
+$primary-color: #d9a441;
+$secondary-color: #c2d941;
+$accent-color: #d95841;
+$light-blue: #b2ddea;
+$purple: #5c5294;
+$light-color: #f8f9fa;
+$dark-color: #343a40;
+$white-color: #ffffff;
+$black-color: #16171a;
+```
 
-- **Verblasstes Olivgrün (#807B50)**
-  - Nachhaltigkeitsindikatoren und -badges
-  - Umweltbezogene Informationen
-  - Kategoriebezeichnungen bei nachhaltigen Produkten
-  - Hintergrundakzente für Umwelt-Content
-  - Sekundäres Farbelement bei Produkt-Tags
+### Farbverwendung
 
-- **Warmes Beige (#E4C9A0)**
-  - Sektionshintergründe
-  - Karten-Hintergründe für Produktbeschreibungen
-  - Texturierte Oberflächen
-  - Rahmenhintergründe für Vintage-Artikel
-  - Hover-Zustände für neutrale Elemente
-
-- **Vintage Rostrot (#9B3D30)**
-  - Premium-Produktkennzeichnungen
-  - Besondere Angebote und limitierte Kollektionen
-  - Akzentfarbe für kuratierte Inhalte
-  - Fehlermeldungen
-  - Designelemente für historische Inhalte
-
-### Neutralfarben
-
-- **Neutral Dunkel (#2C231D)**
-  - Haupttextfarbe
-  - Icons und Symbole
-  - Footertexte
-  - Produktbeschreibungen
-  - Überschriften in Textblöcken
-
-- **Neutral Mittel (#8C7A6B)**
-  - Sekundäre Texte
-  - Inaktive UI-Elemente
-  - Rahmen und Trennlinien
-  - Bildunterschriften und Metadaten
-  - Deaktivierte Zustände
-
-- **Neutral Hell (#F5F1EA)**
-  - Haupthintergrundfarbe
-  - Textfarbe auf dunklen Hintergründen
-  - Kartenhintergründe
-  - Formularfelder
-  - Trennelemente in hellen Bereichen
-
-### Funktionsfarben
-
-- **Erfolgsgrün (#5B7F65)**
-  - Erfolgsmeldungen
-  - Verfügbarkeitsstatus
-  - Bestätigungsanzeigen
-  - Nachhaltigkeitsbewertungen
-  - Positive Indikatoren
+| Farbe | Anwendungsbereiche |
+|-------|-------------------|
+| **Primär Gold/Gelb (#d9a441)** | Buttons, Links, Akzente, Logo-Details |
+| **Sekundär Grünlich (#c2d941)** | Nachhaltigkeits-Elemente, Badges |
+| **Akzent Orange/Rot (#d95841)** | Call-to-Actions, Preise, Badges |
+| **Hellblau (#b2ddea)** | Hero-Bereich, Informationssektionen |
+| **Lila/Violett (#5c5294)** | Dekorative Bereiche, Spezielle Sektionen |
+| **Neutraltöne** | Text, Hintergründe, Ränder |
 
 ## Typografie
 
 ### Schriftfamilien und Verwendung
 
-- **Freight Text Pro**
-  - Hauptüberschriften (H1-H3)
-  - Produkttitel
-  - Markenelemente
-  - Besondere Beschreibungen
-  - Zitate und Testimonials
+- **Playfair Display**
+  - Überschriften (H1-H3)
+  - Logo-Text
+  - Hervorgehobene Elemente
 
-- **Acumin Pro**
-  - Fließtext und Produktbeschreibungen
+- **Raleway**
+  - Fließtext und Beschreibungen
   - UI-Elemente und Navigation
-  - Buttons und Interaktionselemente
-  - Formularbeschriftungen
-  - Metainformationen
+  - Buttons und Formulare
 
 ### Typografische Größen und Gewichte
 
-1. **H1 - Hauptüberschriften**
-   - Freight Text Pro Semibold, 32px/40px, Tiefes Mahagonibraun (#5E2B20)
-   - Verwendung: Hauptseitentitel, Kollektionsbezeichnungen
+```scss
+// Überschriften
+h1, .h1 {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--dark-color);
+}
 
-2. **H2 - Sektionsüberschriften**
-   - Freight Text Pro Semibold, 24px/32px, Tiefes Mahagonibraun (#5E2B20)
-   - Verwendung: Abschnittsüberschriften, Kategorienseiten
+h2, .h2 {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--dark-color);
+}
 
-3. **H3 - Unterabschnitte**
-   - Freight Text Pro Medium, 20px/28px, Tiefes Mahagonibraun (#5E2B20)
-   - Verwendung: Produktgruppen, wichtige Inhaltsblöcke
+h3, .h3 {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--dark-color);
+}
 
-4. **H4 - Kartenüberschriften**
-   - Acumin Pro Semibold, 18px/24px, Tiefes Mahagonibraun (#5E2B20)
-   - Verwendung: Produktkartenüberschriften, Filterüberschriften
+// Text
+p, .body-text {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-base);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--dark-color);
+}
 
-5. **Body - Primär**
-   - Acumin Pro Regular, 16px/24px, Neutral Dunkel (#2C231D)
-   - Verwendung: Haupttextblöcke, Produktbeschreibungen
+.body-text-sm {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+}
 
-6. **Body - Sekundär**
-   - Acumin Pro Regular, 14px/22px, Neutral Mittel (#8C7A6B)
-   - Verwendung: Ergänzende Informationen, Produktdetails
-
-7. **Caption**
-   - Acumin Pro Medium, 12px/16px, Neutral Mittel (#8C7A6B)
-   - Verwendung: Bildunterschriften, Metadaten, kleine Labels
-
-8. **Button Text**
-   - Acumin Pro Medium, 14px/20px, kontextabhängige Farbe
-   - Verwendung: Alle Schaltflächen und interaktive Elemente
+.caption {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-xs);
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--dark-color);
+  opacity: 0.8;
+}
+```
 
 ## Layout und Raster
 
 ### Grundraster
 
-- **Desktop (≥1200px)**
+- **Desktop (≥1440px)**
   - 12-Spalten-Raster
   - Gutters: 24px
   - Margins: 64px
-  - Max. Inhaltsbreite: 1440px
+  - Max. Inhaltsbreite: 1400px
 
-- **Tablet (768-1199px)**
+- **Tablet (900-1439px)**
   - 8-Spalten-Raster
   - Gutters: 16px
   - Margins: 32px
 
-- **Mobile (320-767px)**
+- **Mobile (320-899px)**
   - 4-Spalten-Raster
   - Gutters: 16px
   - Margins: 16px
 
 ### Abstände
 
-- **4px** - Minimaler Abstand (Badges, Icons)
-- **8px** - Kleiner Abstand (eng verwandte Elemente)
-- **16px** - Standard-Abstand (Listenelemente, Formularfelder)
-- **24px** - Mittlerer Abstand (Karten-Padding, verwandte Sektionen)
-- **32px** - Großer Abstand (Komponenten-Trennung)
-- **48px** - Extra großer Abstand (Hauptsektionen)
-- **64px** - Maximaler Abstand (Seitenränder Desktop, Hauptabschnitte)
+- **0.25rem (4px)** - Minimaler Abstand
+- **0.5rem (8px)** - Kleiner Abstand
+- **1rem (16px)** - Standard-Abstand
+- **1.5rem (24px)** - Mittlerer Abstand
+- **2rem (32px)** - Großer Abstand
+- **3rem (48px)** - Extra großer Abstand
+- **4rem (64px)** - Maximaler Abstand
 
 ## Komponenten
 
 ### Buttons
 
 #### Primäre Buttons
-- **Aussehen**: Vollflächig Verbranntes Orange (#C26A42), Text in Neutral Hell (#F5F1EA)
-- **Größen**: 
-  - Klein: 32px Höhe
-  - Standard: 40px Höhe
-  - Groß: 48px Höhe
-- **Zustände**:
-  - Normal: #C26A42
-  - Hover: 10% dunkler
-  - Active: 15% dunkler
-  - Disabled: 50% Transparenz
-- **Verwendung**: Hauptaktionen wie "In den Warenkorb", "Zur Kasse", "Jetzt kaufen"
+```scss
+.btn-primary {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  border: none;
+  padding: 0.8rem 1.8rem;
+  border-radius: var(--border-radius-small);
+  font-family: var(--font-family-body);
+  font-weight: 600;
+  transition: all var(--transition-normal);
+  
+  &:hover {
+    background-color: darken($primary-color, 10%);
+    transform: translateY(-2px);
+  }
+}
+```
 
 #### Sekundäre Buttons
-- **Aussehen**: Transparenter Hintergrund, 1.5px Rahmen in Verbranntem Orange (#C26A42)
-- **Zustände**:
-  - Normal: Transparent mit Rahmen
-  - Hover: 10% Deckkraft der Füllfarbe
-  - Active: 20% Deckkraft der Füllfarbe
-- **Verwendung**: "Mehr erfahren", "Filtern", "Speichern"
+```scss
+.btn-secondary {
+  background-color: var(--dark-color);
+  color: var(--white-color);
+  border: none;
+  padding: 0.8rem 1.8rem;
+  border-radius: var(--border-radius-small);
+  font-family: var(--font-family-body);
+  font-weight: 600;
+  transition: all var(--transition-normal);
+  
+  &:hover {
+    background-color: lighten($dark-color, 10%);
+    transform: translateY(-2px);
+  }
+}
+```
 
-#### Tertiäre Buttons (Text-Links)
-- **Aussehen**: Nur Text in Vintage Rostrot (#9B3D30), keine Unterstreichung
-- **Zustände**:
-  - Hover: Unterstreichung
-- **Verwendung**: "Details anzeigen", Inline-Links, "Bearbeiten"
-
-### Formulare
-
-#### Textfelder
-- **Aussehen**: Neutral Hell (#F5F1EA) Hintergrund, 1px Rahmen in Neutral Mittel (#8C7A6B)
-- **Zustände**:
-  - Focus: 1.5px Rahmen in Gedämpftem Senfgelb (#D9A441)
-  - Error: 1.5px Rahmen in Vintage Rostrot (#9B3D30)
-- **Verwendung**: Alle Texteingaben, Suche, Formularfelder
-
-#### Checkboxen und Radio-Buttons
-- **Aussehen**: Benutzerdefiniertes Design mit nostalgischem Charakter
-- **Aktiv**: Gedämpftes Senfgelb (#D9A441) für ausgewählte Zustände
-- **Verwendung**: Auswahloptionen, Filter, Einstellungen
+#### Outline Buttons
+```scss
+.btn-outline {
+  background-color: transparent;
+  color: var(--dark-color);
+  border: 2px solid var(--dark-color);
+  padding: 0.8rem 1.8rem;
+  border-radius: var(--border-radius-small);
+  font-family: var(--font-family-body);
+  font-weight: 600;
+  transition: all var(--transition-normal);
+  
+  &:hover {
+    background-color: var(--dark-color);
+    color: var(--white-color);
+    transform: translateY(-2px);
+  }
+}
+```
 
 ### Karten
 
 #### Produktkarten
-- **Aussehen**: 
-  - Hintergrund: Neutral Hell (#F5F1EA)
-  - Schatten: Subtil, 2px Versatz
-  - Rundung: 8px
-- **Elemente**:
-  - Bild: Abgerundete Ecken (6px)
-  - Titel: H4, Tiefes Mahagonibraun (#5E2B20)
-  - Preis: Semibold 16px, Vintage Rostrot (#9B3D30)
-  - Nachhaltigkeits-Badge: Kreisförmig, Verblasstes Olivgrün (#807B50)
-- **Verwendung**: Produktlisten, Suchergebnisse, Empfehlungen
-
-#### Inhaltskarten
-- **Aussehen**:
-  - Hintergrund: Warmes Beige (#E4C9A0) mit 30% Deckkraft
-  - Rahmen: 1px Neutral Mittel (#8C7A6B) mit 20% Deckkraft
-- **Verwendung**: Blog-Beiträge, Geschichten, Kollektionen
-
-### Navigation
-
-#### Hauptnavigation
-- **Aussehen**:
-  - Hintergrund: Neutral Hell (#F5F1EA)
-  - Aktiv: Verbranntes Orange (#C26A42) Unterstreichung
-- **Mobile**: Hamburger-Menü mit Animation
-- **Verwendung**: Hauptmenü, Kategorien
-
-#### Produktfilter
-- **Aussehen**:
-  - Rahmen: 1px Neutral Mittel (#8C7A6B)
-  - Aktiv: Verbranntes Orange (#C26A42) Hintergrund oder Rahmen
-- **Verwendung**: Kategorienseiten, Suchergebnisse
-
-### Spezifische Komponenten
-
-#### Nachhaltigkeits-Badge
-- **Aussehen**: Kreisform mit Icon, Verblasstes Olivgrün (#807B50)
-- **Varianten**: 3-5 Stufen zur Visualisierung des Nachhaltigkeitsgrads
-- **Verwendung**: Produktkarten, Detailseiten
-
-#### Zustandsindikator für Vintage-Artikel
-- **Aussehen**: Abgerundetes Label mit Farbcodierung
-- **Varianten**:
-  - "Neuwertig": Gedämpftes Senfgelb (#D9A441)
-  - "Sehr gut": Verbranntes Orange (#C26A42)
-  - "Mit Patina": Vintage Rostrot (#9B3D30)
-- **Verwendung**: Vintage-Artikel, Second-Hand-Produkte
-
-#### Story-Element
-- **Aussehen**: Vintage-Dokument-Stil mit Papierstruktur
-- **Elemente**: Zeitlinie, Herkunftsgeschichte
-- **Verwendung**: Produktdetailseiten, Markengeschichte
-
-## Bildsprache
-
-### Produktfotografie
-- **Stil**: Natürliches Licht, authentische Darstellung
-- **Hintergrund**: Neutrale, texturierte Oberflächen
-- **Farbtemperatur**: Warm, leicht vintage-gefiltert
-- **Verwendung**: Produktgalerien, Detailseiten
-
-### Iconografie
-- **Stil**: Feine Linienzeichnungen mit Vintage-Details
-- **Strichstärke**: 1.5px
-- **Farbe**: Primär Tiefes Mahagonibraun (#5E2B20)
-- **Verwendung**: Navigation, UI-Elemente, Funktionsanzeigen
-
-### Texturen
-- **Papiertextur**: Leichte Körnung für Hintergründe
-- **Stofftextur**: Für bestimmte Inhaltsblöcke
-- **Holzmaserung**: Dekorative Elemente für Premium-Bereiche
-- **Verwendung**: Hintergründe, Trennelemente, Akzente
-
-## Animation und Interaktion
-
-### Übergangsprinzipien
-- **Timing-Funktion**: Ease-Out (cubic-bezier(0.25, 0.1, 0.25, 1))
-- **Standarddauer**: 300ms
-- **Verwendung**: Alle UI-Übergänge, Hover-Effekte
-
-### Spezifische Animationen
-- **Hover-Effekte**: Subtile Skalierung (1.02) für Karten
-- **Seitenübergänge**: Sanftes Crossfading
-- **Ladezustände**: Vintage-inspirierte Animation
-
-## Responsive Design
-
-### Desktop-Erlebnis
-- **Layout**: Volle 12-Spalten-Nutzung
-- **Produktdarstellung**: Großzügige Bilder, ausführliche Informationen
-- **Navigation**: Vollständig sichtbar
-
-### Tablet-Anpassungen
-- **Layout**: Kompaktere 8-Spalten-Anordnung
-- **Produktdarstellung**: Leicht reduzierte Bildgrößen
-- **Navigation**: Teilweise komprimiert
-
-### Mobile Optimierung
-- **Layout**: Vertikaler Fluss im 4-Spalten-System
-- **Produktdarstellung**: Fokus auf Bilder, essentielle Informationen
-- **Navigation**: Hamburger-Menü, vereinfachte Filter
-
-## Implementierungsrichtlinien
-
-### SCSS-Variablen-System
-Alle Design-Elemente werden als SCSS-Variablen definiert:
-
-```scss
-
-// Typografie
-$font-heading: 'Freight Text Pro', serif;
-$font-body: 'Acumin Pro', sans-serif;
-
-// Abstände
-$spacing-xs: 4px;
-$spacing-sm: 8px;
-$spacing-md: 16px;
-$spacing-lg: 24px;
-$spacing-xl: 32px;
-$spacing-xxl: 48px;
-$spacing-xxxl: 64px;
-
-// Übergänge
-$transition-standard: all 300ms cubic-bezier(0.25, 0.1, 0.25, 1);
-```
-
-### Komponenten-Struktur
-Komponenten werden nach BEM-Methodik modular strukturiert:
-
 ```scss
 .product-card {
-  background-color: $color-neutral-light;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba($color-neutral-dark, 0.1);
-  transition: $transition-standard;
+  background-color: var(--white-color);
+  border-radius: var(--border-radius-medium);
+  overflow: hidden;
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-light);
   
-  &__image { }
-  &__content { }
-  &__title { }
-  &__price { }
-  &__badge { }
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+  }
   
-  &--featured { }
+  .product-image-container {
+    position: relative;
+    padding-top: 100%; // 1:1 Aspect Ratio
+    overflow: hidden;
+  }
+  
+  .product-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .product-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+  }
+  
+  .product-info {
+    padding: 1.2rem;
+  }
+  
+  .product-category {
+    font-size: var(--font-size-xs);
+    color: var(--dark-color);
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .product-title {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    color: var(--dark-color);
+  }
+  
+  .product-price {
+    font-weight: 600;
+    color: var(--accent-color);
+  }
 }
 ```
 
+#### Kategorie-Karten
+```scss
+.category-card {
+  background-color: var(--light-color);
+  border-radius: var(--border-radius-medium);
+  padding: 2rem;
+  text-decoration: none;
+  color: var(--dark-color);
+  transition: all var(--transition-normal);
+  position: relative;
+  
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-medium);
+  }
+  
+  .category-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+    transition: all var(--transition-normal);
+  }
+  
+  &:hover .category-icon {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+  }
+  
+  .category-title {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    position: relative;
+  }
+  
+  .category-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 40px;
+    height: 2px;
+    background-color: var(--primary-color);
+  }
+  
+  .category-description {
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+    color: var(--dark-color);
+    opacity: 0.9;
+  }
+}
+```
+
+### Navigation
+
+Die Navigation verwendet ein responsives Design mit den folgenden Komponenten:
+
+```scss
+.navigation-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: var(--white-color);
+  border-bottom: 2px solid var(--primary-color);
+  height: var(--header-height);
+  transition: all 0.4s ease;
+  
+  // Scrolled-Zustand
+  &.scrolled {
+    box-shadow: var(--shadow-medium);
+  }
+  
+  // Transparenter Zustand
+  &.transparent {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    height: var(--header-height-scrolled);
+    border-bottom-color: rgba(217, 164, 65, 0.3);
+  }
+  
+  .navigation-container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+```
+
+## Abschnitte und Seitenstrukturen
+
+### Hero-Abschnitt
+```scss
+.hero-section {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  background-color: var(--light-blue);
+  padding: var(--section-padding-large) var(--container-padding);
+  
+  .hero-content {
+    max-width: 650px;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .hero-title {
+    font-family: var(--font-family-heading);
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: var(--dark-color);
+    
+    .title-vintage {
+      position: relative;
+      color: var(--primary-color);
+      display: inline-block;
+    }
+  }
+  
+  .hero-description {
+    font-size: 1.4rem;
+    font-weight: 300;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    color: var(--dark-color);
+  }
+}
+```
+
+### Kategorien-Abschnitt
+```scss
+.categories-section {
+  background-color: var(--white-color);
+  padding: var(--section-padding-large) var(--container-padding);
+  
+  .section-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+  }
+  
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: var(--container-width);
+    margin: 0 auto;
+  }
+}
+```
+
+### Produktliste
+```scss
+.featured-section {
+  background-color: var(--light-color);
+  padding: var(--section-padding-large) var(--container-padding);
+  
+  .featured-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: var(--container-width);
+    margin: 0 auto 3rem;
+  }
+  
+  .featured-action {
+    text-align: center;
+    margin-top: 2rem;
+  }
+}
+```
+
+### Newsletter-Bereich
+```scss
+.newsletter-banner {
+  background-color: rgba(217, 164, 65, 0.08);
+  padding: var(--section-padding-medium) var(--container-padding);
+  
+  .newsletter-form {
+    display: flex;
+    max-width: 500px;
+    
+    .newsletter-input {
+      flex: 1;
+      padding: 0.8rem 1.5rem;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 4px 0 0 4px;
+      font-family: var(--font-family-body);
+    }
+    
+    .newsletter-button {
+      padding: 0 1.5rem;
+      border-radius: 0 4px 4px 0;
+    }
+  }
+}
+```
+
+## Seitenverzeichnis
+
+### Hauptseiten
+- `/` - Home
+- `/shop` - Hauptshop-Seite
+- `/kollektionen` - Kollektionen-Übersicht
+- `/produktgeschichten` - Produktgeschichten
+- `/nachhaltigkeit` - Nachhaltigkeit
+- `/uber-uns` - Über uns
+
+### Shop-Kategorien
+- `/shop/vintage` - Vintage-Schätze
+- `/shop/upcycled` - Upcycling-Produkte
+- `/shop/designer` - Designer-Kollektionen
+- `/shop/limited` - Limitierte Editionen
+
+### Kollektionen
+- `/collections/decades/60s` - 60er Jahre Revival
+- `/collections/decades/70s` - 70er Boho-Chic
+- `/collections/decades/80s` - 80er Nostalgie
+- `/collections/decades/90s` - 90er Comeback
+- `/collections/all` - Alle Kollektionen ansehen
+
+### Utility-Seiten
+- `/search` - Suche
+- `/account` - Konto/Benutzerprofil
+- `/wishlist` - Wunschliste
+- `/cart` - Warenkorb
+
+### Informationsseiten
+- `/faq` - Häufige Fragen
+- `/shipping` - Versand & Lieferung
+- `/returns` - Rückgabe & Erstattung
+- `/care` - Pflegehinweise
+- `/contact` - Kontakt
+
+### Rechtliche Seiten
+- `/terms` - AGB
+- `/privacy` - Datenschutz
+- `/imprint` - Impressum
+
+## Responsive Design
+
+### Desktop (≥1440px)
+- Volle 12-Spalten-Nutzung
+- Großzügige Produktdarstellung
+- Horizontale Navigation
+
+### Tablet (900-1439px)
+- Kompaktere 8-Spalten-Anordnung
+- Leicht reduzierte Bildgrößen
+- Navigation mit angepasstem Platz
+
+### Mobile (<900px)
+- Vertikaler Fluss im 4-Spalten-System
+- Hamburger-Menü für die Navigation
+- Optimierte Darstellung für die einhändige Nutzung
+
+## SCSS-Mixins
+
+```scss
+// Responsive Breakpoints Mixin
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == large {
+    @media (max-width: 1600px) {
+      @content;
+    }
+  } @else if $breakpoint == medium {
+    @media (max-width: 1440px) {
+      @content;
+    }
+  } @else if $breakpoint == small {
+    @media (max-width: 600px) {
+      @content;
+    }
+  }
+}
+
+// Zentrierte Ausrichtung
+@mixin center($type: both) {
+  @if $type == horizontal {
+    margin-left: auto;
+    margin-right: auto;
+  } @else if $type == vertical {
+    display: flex;
+    align-items: center;
+  } @else if $type == both {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+// Flex-Container
+@mixin flex($direction: row, $wrap: nowrap, $justify: flex-start, $align: stretch) {
+  display: flex;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+  justify-content: $justify;
+  align-items: $align;
+}
+```
+
+## Entwicklungsrichtlinien
+
+1. **Komponentenbasierter Ansatz**
+   - Jede Komponente sollte so entwickelt werden, dass sie wiederverwendbar ist
+   - Komponenten sollten alle Styles enthalten, die sie benötigen
+
+2. **CSS-Variablen verwenden**
+   - Alle Farben, Schriften und Abstände sollten über CSS-Variablen definiert werden
+   - Keine hartcodierten Werte in den Komponenten
+
+3. **Responsive Design berücksichtigen**
+   - Alle Komponenten müssen auf den drei Hauptbreakpoints getestet werden
+   - Mobile-First-Ansatz für die Entwicklung
+
+4. **Semantisches HTML**
+   - Verwende semantische HTML-Elemente für bessere Zugänglichkeit
+   - Achte auf korrekte ARIA-Attribute wo notwendig
+
+5. **Performance-Optimierung**
+   - CSS-Dateien minimieren
+   - Bilder optimieren
+   - Code-Splitting für React-Komponenten
+
 ## Nächste Schritte
 
-1. **Entwicklung der Komponentenbibliothek**:
-   - Erstellung aller UI-Komponenten gemäß Design-System
-   - Integration in ein Storybook zur Dokumentation
+1. **Entwicklung der verbleibenden Seiten**
+   - Priorisierte Entwicklung der Hauptseiten (Shop, Kollektionen)
+   - Anschließend Erstellung der Informations- und Rechtsseiten
 
-2. **Prototypen für Hauptseiten**:
-   - Homepage mit Fokus auf Markenwerten
-   - Kategorie-Übersicht mit Filterfunktionen
-   - Produktdetailseite mit Story-Element
-   - Warenkorb und Checkout-Prozess
+2. **Implementierung der interaktiven Elemente**
+   - Warenkorb-Funktionalität
+   - Filtermechanismen für Produktlisten
+   - Suchfunktionalität
 
-3. **Usability-Tests**:
-   - Validierung des Designs mit Vertretern der Zielgruppen
-   - Iteration basierend auf Feedback
+3. **Usability-Tests**
+   - Tests mit Vertretern der Zielgruppen
+   - Anpassungen basierend auf Feedback
 
-4. **Dokumentation**:
-   - Detaillierte Stilrichtlinien für das Entwicklungsteam
-   - Anwendungsbeispiele und Best Practices
-
----
-
-![Colors](./src/assets/Analog.png)
-
-Dieses finale Design-System bildet die Grundlage für die konsistente Entwicklung aller digitalen Berührungspunkte der Retroy-Plattform. Es verkörpert die Markenwerte Nachhaltigkeit, Qualität und Individualität und bietet gleichzeitig ein intuitives, ansprechendes Nutzererlebnis.
+4. **Performance-Optimierung**
+   - Audit der Ladezeiten
+   - Implementierung von Lazy-Loading für Bilder
+   - Optimierung der Build-Größe

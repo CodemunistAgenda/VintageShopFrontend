@@ -1,54 +1,43 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import '../layout/styles/Navigation.scss';
-import { 
-  FaSearch, 
-  FaUser, 
-  FaHeart, 
-  FaShoppingCart, 
-  FaChevronDown 
+import {
+  FaSearch,
+  FaUser,
+  FaHeart,
+  FaShoppingCart,
+  FaChevronDown
 } from 'react-icons/fa';
-import { 
-  GiVintageRobot, 
-  GiRecycle, 
-  GiNotebook, 
-  GiDiamondTrophy 
+import {
+  GiVintageRobot,
+  GiRecycle,
+  GiNotebook,
+  GiDiamondTrophy
 } from 'react-icons/gi';
+import { useAppContext } from '../../contexts/AppContext';
+import { useCart } from '../../contexts/CartContext';
+import { useUser } from '../../contexts/UserContext';
 
 const Navigation = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(null);
-  const [scrolled, setScrolled] = useState(false);
-  const [transparent, setTransparent] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      // Für die Standardänderung beim minimalen Scrollen
-      setScrolled(window.scrollY > 20);
-      
-      // Für die Transparenz, wenn man mehr nach unten scrollt
-      // und der Fokus von der Navigation weggeht
-      if (window.scrollY > 200) {
-        setTransparent(true);
-      } else {
-        setTransparent(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const toggleDropdown = (category) => {
-    setActiveDropdown(activeDropdown === category ? null : category);
-  };
-
+  // Verwende den AppContext für UI-Zustände
+  const { 
+    isMenuOpen, 
+    activeDropdown, 
+    scrolled, 
+    transparent, 
+    isMobile,
+    toggleMenu, 
+    toggleDropdown 
+  } = useAppContext();
+  
+  // Verwende den CartContext für Warenkorb-Informationen
+  const { cart } = useCart();
+  
+  // Verwende den UserContext für Wunschlisten-Informationen
+  const { wishlist } = useUser();
+  
   return (
-    <header className={`navigation-header ${scrolled ? 'scrolled' : ''} ${transparent ? 'transparent' : ''}`}>
+    <nav className={`navigation-header ${scrolled ? 'scrolled' : ''} ${transparent ? 'transparent' : ''}`}>
       <div className="navigation-container">
         <div className="logo-container">
           <Link to="/" className="logo">
@@ -70,7 +59,7 @@ const Navigation = () => {
           <span></span>
         </button>
 
-        <nav className={`main-navigation ${isMenuOpen ? 'open' : ''}`}>
+        <div className={`main-navigation ${isMenuOpen ? 'open' : ''}`}>
           <ul className="nav-links">
             <li className="nav-item">
               <Link to="/" className="nav-link">Home</Link>
@@ -178,16 +167,16 @@ const Navigation = () => {
             </Link>
             <Link to="/wishlist" className="action-button wishlist-button" aria-label="Wunschliste">
               <FaHeart />
-              <span className="badge">0</span>
+              <span className="badge">{wishlist?.length || 0}</span>
             </Link>
             <Link to="/cart" className="action-button cart-button" aria-label="Warenkorb">
               <FaShoppingCart />
-              <span className="badge">0</span>
+              <span className="badge">{cart?.itemCount || 0}</span>
             </Link>
           </div>
-        </nav>
+        </div>
       </div>
-    </header>
+    </nav>
   );
 };
 

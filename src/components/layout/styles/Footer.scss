@@ -1,9 +1,9 @@
 // Footer.scss - Styles für den Footer im Retro-Vintage-Stil
-@use '../../../styles/abstracts/mixins' as *;
-@use '../../../styles/abstracts/variables' as *;
+@use "../../../styles/abstracts/mixins" as *;
+@use "../../../styles/abstracts/variables" as *;
 
 // Vintage-inspirierte Schriftarten
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap");
 
 .footer {
   position: relative;
@@ -11,8 +11,8 @@
   color: var(--dark-color);
   padding-top: 4rem;
   border-top: 2px solid var(--primary-color);
-  font-family: 'Raleway', sans-serif;
-  
+  font-family: "Raleway", sans-serif;
+
   // Dekorative Linie
   .footer-decorative-line {
     position: absolute;
@@ -36,7 +36,8 @@
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 2rem;
-    
+    padding-bottom: 0px;
+
     @include respond-to(medium) {
       padding: 0 1rem;
     }
@@ -47,7 +48,7 @@
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 3rem;
-    
+
     @include respond-to(medium) {
       flex-direction: column;
     }
@@ -58,27 +59,27 @@
     flex: 0 0 25%;
     padding-right: 2rem;
     margin-bottom: 2rem;
-    
+
     @include respond-to(medium) {
       flex: 0 0 100%;
       padding-right: 0;
       text-align: center;
       margin-bottom: 3rem;
     }
-    
+
     .logo-text {
-      font-family: 'Playfair Display', serif;
+      font-family: "Playfair Display", serif;
       font-weight: 700;
       font-size: 2rem;
       line-height: 1;
       margin-bottom: 0.5rem;
-      
+
       .logo-retro {
         color: var(--dark-color);
         position: relative;
-        
+
         &::after {
-          content: '';
+          content: "";
           position: absolute;
           bottom: 0;
           left: 0;
@@ -89,14 +90,14 @@
           transform-origin: left;
         }
       }
-      
+
       .logo-y {
         color: var(--primary-color);
         position: relative;
         display: inline-block;
       }
     }
-    
+
     .footer-slogan {
       font-weight: 300;
       font-size: 0.9rem;
@@ -113,11 +114,11 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    
+
     @include respond-to(medium) {
       width: 100%;
     }
-    
+
     @include respond-to(small) {
       flex-direction: column;
     }
@@ -129,12 +130,12 @@
     min-width: 150px;
     padding: 0 1rem;
     margin-bottom: 2rem;
-    
+
     @include respond-to(small) {
       padding: 0;
       margin-bottom: 2rem;
     }
-    
+
     &.contact-section {
       flex: 1.5;
     }
@@ -142,15 +143,15 @@
 
   // Überschriften
   .footer-heading {
-    font-family: 'Playfair Display', serif;
+    font-family: "Playfair Display", serif;
     font-weight: 700;
     font-size: 1.2rem;
     margin-bottom: 1.2rem;
     position: relative;
     display: inline-block;
-    
+
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: -5px;
       left: 0;
@@ -158,29 +159,31 @@
       height: 2px;
       background-color: var(--primary-color);
     }
-    
+
     @include respond-to(medium) {
       margin-bottom: 1rem;
     }
   }
 
   // Listen für Links
-  .footer-links, .contact-info {
+  .footer-links,
+  .contact-info {
     list-style: none;
     padding: 0;
     margin: 0;
-    
+
     li {
       margin-bottom: 0.7rem;
-      
-      a, address {
+
+      a,
+      address {
         color: var(--dark-color);
         text-decoration: none;
         font-size: 0.95rem;
         transition: color 0.2s ease, transform 0.2s ease;
         display: inline-block;
         font-style: normal;
-        
+
         &:hover {
           color: var(--primary-color);
           transform: translateX(3px);
@@ -195,7 +198,7 @@
       display: flex;
       align-items: flex-start;
       margin-bottom: 1rem;
-      
+
       .contact-icon {
         margin-right: 10px;
         margin-top: 3px;
@@ -209,7 +212,7 @@
   .social-links {
     display: flex;
     margin-top: 1.5rem;
-    
+
     .social-link {
       display: flex;
       align-items: center;
@@ -221,7 +224,7 @@
       color: var(--dark-color);
       margin-right: 10px;
       transition: all 0.3s ease;
-      
+
       &:hover {
         background-color: var(--primary-color);
         color: var(--white-color);
@@ -233,102 +236,111 @@
   // Newsletter-Bereich
   .newsletter {
     padding: 2.5rem;
-    background-color: rgba(217, 164, 65, 0.1); // var(--primary-color) mit Transparenz
+    background-color: rgba(
+      217,
+      164,
+      65,
+      0.1
+    ); // var(--primary-color) mit Transparenz
     border-radius: 4px;
     margin-bottom: 3rem;
     display: flex;
     align-items: center;
     position: relative;
     overflow: hidden;
-    
+
     // Dekorativer Hintergrund
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       right: 0;
       width: 150px;
       height: 150px;
-      background-image: radial-gradient(circle, rgba(217, 164, 65, 0.2) 0%, transparent 70%);
+      background-image: radial-gradient(
+        circle,
+        rgba(217, 164, 65, 0.2) 0%,
+        transparent 70%
+      );
       opacity: 0.5;
     }
-    
+
     @include respond-to(medium) {
       flex-direction: column;
       text-align: center;
       padding: 2rem 1.5rem;
     }
-    
+
     .newsletter-content {
       flex: 1;
       padding-right: 2rem;
-      
+
       @include respond-to(medium) {
         padding-right: 0;
         margin-bottom: 1.5rem;
       }
     }
-    
+
     .newsletter-heading {
-      font-family: 'Playfair Display', serif;
+      font-family: "Playfair Display", serif;
       font-weight: 700;
       font-size: 1.4rem;
       margin-bottom: 0.5rem;
     }
-    
+
     .newsletter-text {
       font-size: 0.95rem;
       opacity: 0.9;
       line-height: 1.5;
     }
-    
+
     .newsletter-form {
       display: flex;
       min-width: 300px;
-      
+
       @include respond-to(medium) {
         width: 100%;
         min-width: 0;
       }
-      
+
       @include respond-to(small) {
         flex-direction: column;
       }
-      
+
       .newsletter-input {
         flex: 1;
         padding: 0.8rem 1rem;
         border: 1px solid rgba(0, 0, 0, 0.1);
         border-radius: 4px 0 0 4px;
-        font-family: 'Raleway', sans-serif;
+        font-family: "Raleway", sans-serif;
         font-size: 0.95rem;
-        
+
         &:focus {
           outline: none;
           border-color: var(--primary-color);
         }
-        
+
         @include respond-to(small) {
           border-radius: 4px;
           margin-bottom: 0.8rem;
         }
       }
-      
+
       .newsletter-button {
         padding: 0 1.5rem;
         background-color: var(--primary-color);
         color: var(--white-color);
         border: none;
         border-radius: 0 4px 4px 0;
-        font-family: 'Raleway', sans-serif;
+        font-family: "Raleway", sans-serif;
         font-weight: 600;
         cursor: pointer;
         transition: background-color 0.3s ease;
-        
+
         &:hover {
           background-color: darken(#d9a441, 10%);
         }
-        
+
         @include respond-to(small) {
           padding: 0.8rem;
           border-radius: 4px;
@@ -345,37 +357,37 @@
     align-items: center;
     border-top: 1px solid rgba(0, 0, 0, 0.07);
     font-size: 0.9rem;
-    
+
     @include respond-to(medium) {
       flex-direction: column-reverse;
       text-align: center;
     }
-    
+
     .footer-bottom-links {
       display: flex;
-      
+
       @include respond-to(medium) {
         margin-top: 1rem;
       }
-      
+
       a {
         margin-right: 1.5rem;
         color: var(--dark-color);
         text-decoration: none;
         opacity: 0.8;
         transition: opacity 0.2s ease;
-        
+
         &:hover {
           opacity: 1;
           color: var(--primary-color);
         }
-        
+
         &:last-child {
           margin-right: 0;
         }
       }
     }
-    
+
     .copyright {
       opacity: 0.7;
     }
