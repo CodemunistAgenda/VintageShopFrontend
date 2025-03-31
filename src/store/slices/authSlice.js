@@ -10,12 +10,17 @@ import {
 
 const apiCall = async (method, url, data = null, rejectWithValue, config = {}) => {
   try {
+    console.log("🔁 API Call →", method.toUpperCase(), url); // 💡 hangi endpoint çağrılıyor
+    console.log("📦 Payload:", data); // 💡 gönderilen veri
     const response = await API[method](url, data, config);
+    console.log("✅ Response:", response.data); // 💡 gelen cevap
     return response.data;
   } catch (error) {
+    console.error("❌ API Error:", error.response || error); // 💡 hata detayı
     return rejectWithValue(error.response?.data?.message || "❌ Bir hata oluştu.");
   }
 };
+
 
 //
 // 🔐 LOGIN
@@ -38,16 +43,15 @@ export const login = createAsyncThunk(
 //
 // 📝 REGISTER
 //
+// REGISTER (authSlice.js)
 export const register = createAsyncThunk(
   "auth/register",
   async (userData, { rejectWithValue }) => {
-    const response = await apiCall("post", "/user/register", userData, rejectWithValue, {
-      headers: { "Content-Type": "multipart/form-data" },
-    });
-
-    return response.message; 
+    const response = await apiCall("post", "/user/register", userData, rejectWithValue);
+    return response.message;
   }
 );
+
 
 //
 // 🚪 LOGOUT

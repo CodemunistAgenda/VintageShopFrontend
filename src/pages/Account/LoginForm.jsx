@@ -20,14 +20,12 @@ const LoginForm = ({ switchTab }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
 
- 
   useEffect(() => {
     if (isAuthenticated) {
       toast.success('Willkommen zurück!');
       navigate('/dashboard');
     }
   }, [isAuthenticated, navigate]);
-
 
   useEffect(() => {
     if (error) {
@@ -73,7 +71,7 @@ const LoginForm = ({ switchTab }) => {
     try {
       await dispatch(login(formData)).unwrap();
     } catch (err) {
-      toast.error(err, 'Anmeldung fehlgeschlagen.');
+      toast.error(err || 'Anmeldung fehlgeschlagen.');
     }
   };
 

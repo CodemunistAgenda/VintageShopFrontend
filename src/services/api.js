@@ -5,6 +5,8 @@ import {
 } from "./storage";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL;
+console.log("🌐 API BASE URL:", API_BASE_URL);
+console.log("🔑 Stored Token:", getStoredToken()); // 💡 token kontrolü
 
 const API = axios.create({
   baseURL: API_BASE_URL,

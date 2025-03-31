@@ -21,13 +21,11 @@ const RegisterForm = ({ switchTab }) => {
   const [showConfirm, setShowConfirm] = useState(false);
   const [errors, setErrors] = useState({});
 
-
   useEffect(() => {
     if (isAuthenticated) {
       toast.success('Registrierung erfolgreich. Willkommen!');
     }
   }, [isAuthenticated]);
-
 
   useEffect(() => {
     if (error) {
@@ -93,7 +91,7 @@ const RegisterForm = ({ switchTab }) => {
       });
       setTimeout(() => switchTab('login'), 1500);
     } catch (err) {
-      toast.error(err, 'Registrierung fehlgeschlagen.');
+      toast.error(err || 'Registrierung fehlgeschlagen.');
     }
   };
 

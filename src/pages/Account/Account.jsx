@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import LoginForm from './LoginForm';
-import RegisterForm from './RegisterForm';
-import './Account.scss';
+import React, { useState } from "react";
+import LoginForm from "./LoginForm";
+import RegisterForm from "./RegisterForm";
+import "./Account.scss";
 
 const AccountPage = () => {
-  const [activeTab, setActiveTab] = useState('login');
+  const [activeTab, setActiveTab] = useState("login");
 
   return (
     <div className="account-page">
@@ -13,21 +13,21 @@ const AccountPage = () => {
 
         <div className="tab-navigation">
           <button
-            className={`tab-button ${activeTab === 'login' ? 'active' : ''}`}
-            onClick={() => setActiveTab('login')}
+            className={`tab-button ${activeTab === "login" ? "active" : ""}`}
+            onClick={() => setActiveTab("login")}
           >
             Anmelden
           </button>
           <button
-            className={`tab-button ${activeTab === 'register' ? 'active' : ''}`}
-            onClick={() => setActiveTab('register')}
+            className={`tab-button ${activeTab === "register" ? "active" : ""}`}
+            onClick={() => setActiveTab("register")}
           >
             Registrieren
           </button>
         </div>
 
-        {activeTab === 'login' && <LoginForm />}
-        {activeTab === 'register' && <RegisterForm />}
+        {activeTab === "login" && <LoginForm switchTab={setActiveTab} />}
+        {activeTab === "register" && <RegisterForm switchTab={setActiveTab} />}
       </div>
     </div>
   );
