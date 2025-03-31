@@ -2,8 +2,8 @@
 @use "../../../styles/abstracts/mixins" as *;
 @use "../../../styles/abstracts/variables" as *;
 
-// Vintage-inspirierte Schriftarten
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap");
+// Der Schriftarten-Import wurde in _variables.scss verschoben
+// @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap");
 
 .footer {
   position: relative;
@@ -11,7 +11,7 @@
   color: var(--dark-color);
   padding-top: 4rem;
   border-top: 2px solid var(--primary-color);
-  font-family: "Raleway", sans-serif;
+  font-family: var(--font-family-body);
 
   // Dekorative Linie
   .footer-decorative-line {
@@ -68,8 +68,8 @@
     }
 
     .logo-text {
-      font-family: "Playfair Display", serif;
-      font-weight: 700;
+      font-family: var(--font-family-heading);
+      font-weight: var(--font-weight-bold);
       font-size: 2rem;
       line-height: 1;
       margin-bottom: 0.5rem;
@@ -99,7 +99,7 @@
     }
 
     .footer-slogan {
-      font-weight: 300;
+      font-weight: var(--font-weight-light);
       font-size: 0.9rem;
       letter-spacing: 1px;
       margin-top: 0.5rem;
@@ -143,8 +143,8 @@
 
   // Überschriften
   .footer-heading {
-    font-family: "Playfair Display", serif;
-    font-weight: 700;
+    font-family: var(--font-family-heading);
+    font-weight: var(--font-weight-bold);
     font-size: 1.2rem;
     margin-bottom: 1.2rem;
     position: relative;
@@ -229,122 +229,6 @@
         background-color: var(--primary-color);
         color: var(--white-color);
         transform: translateY(-3px);
-      }
-    }
-  }
-
-  // Newsletter-Bereich
-  .newsletter {
-    padding: 2.5rem;
-    background-color: rgba(
-      217,
-      164,
-      65,
-      0.1
-    ); // var(--primary-color) mit Transparenz
-    border-radius: 4px;
-    margin-bottom: 3rem;
-    display: flex;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-
-    // Dekorativer Hintergrund
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 150px;
-      height: 150px;
-      background-image: radial-gradient(
-        circle,
-        rgba(217, 164, 65, 0.2) 0%,
-        transparent 70%
-      );
-      opacity: 0.5;
-    }
-
-    @include respond-to(medium) {
-      flex-direction: column;
-      text-align: center;
-      padding: 2rem 1.5rem;
-    }
-
-    .newsletter-content {
-      flex: 1;
-      padding-right: 2rem;
-
-      @include respond-to(medium) {
-        padding-right: 0;
-        margin-bottom: 1.5rem;
-      }
-    }
-
-    .newsletter-heading {
-      font-family: "Playfair Display", serif;
-      font-weight: 700;
-      font-size: 1.4rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .newsletter-text {
-      font-size: 0.95rem;
-      opacity: 0.9;
-      line-height: 1.5;
-    }
-
-    .newsletter-form {
-      display: flex;
-      min-width: 300px;
-
-      @include respond-to(medium) {
-        width: 100%;
-        min-width: 0;
-      }
-
-      @include respond-to(small) {
-        flex-direction: column;
-      }
-
-      .newsletter-input {
-        flex: 1;
-        padding: 0.8rem 1rem;
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        border-radius: 4px 0 0 4px;
-        font-family: "Raleway", sans-serif;
-        font-size: 0.95rem;
-
-        &:focus {
-          outline: none;
-          border-color: var(--primary-color);
-        }
-
-        @include respond-to(small) {
-          border-radius: 4px;
-          margin-bottom: 0.8rem;
-        }
-      }
-
-      .newsletter-button {
-        padding: 0 1.5rem;
-        background-color: var(--primary-color);
-        color: var(--white-color);
-        border: none;
-        border-radius: 0 4px 4px 0;
-        font-family: "Raleway", sans-serif;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-
-        &:hover {
-          background-color: darken(#d9a441, 10%);
-        }
-
-        @include respond-to(small) {
-          padding: 0.8rem;
-          border-radius: 4px;
-        }
       }
     }
   }

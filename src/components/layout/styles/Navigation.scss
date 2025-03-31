@@ -2,8 +2,8 @@
 @use "../../../styles/abstracts/mixins" as *;
 @use "../../../styles/abstracts/variables" as *;
 
-// Vintage-inspirierte Schriftarten
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap");
+// Der Schriftarten-Import wurde in _variables.scss verschoben
+// @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap");
 
 // Navigation Header
 .navigation-header {
@@ -102,8 +102,8 @@
   }
 
   .logo-text {
-    font-family: "Playfair Display", serif;
-    font-weight: 700;
+    font-family: var(--font-family-heading);
+    font-weight: var(--font-weight-bold);
     font-size: 2.2rem;
     line-height: 1;
     transition: all 0.3s ease;
@@ -135,8 +135,8 @@
   }
 
   .logo-tagline {
-    font-family: "Raleway", sans-serif;
-    font-weight: 300;
+    font-family: var(--font-family-body);
+    font-weight: var(--font-weight-light);
     font-size: 0.9rem;
     color: var(--dark-color);
     letter-spacing: 1px;
@@ -259,9 +259,9 @@
     padding: 1.5rem 1rem;
     color: var(--dark-color);
     text-decoration: none;
-    font-family: "Raleway", sans-serif;
+    font-family: var(--font-family-body);
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
     letter-spacing: 0.5px;
     text-transform: uppercase;
     transition: all 0.3s ease;
@@ -306,10 +306,10 @@
     cursor: pointer;
     background: none;
     border: none;
-    font-family: inherit;
+    font-family: var(--font-family-body);
     font-size: inherit;
     padding: 1.5rem 1rem;
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
     letter-spacing: 0.5px;
     text-transform: uppercase;
     color: var(--dark-color);
@@ -410,10 +410,10 @@
 
   .category-title {
     padding: 0.5rem 1.5rem;
-    font-family: "Playfair Display", serif;
+    font-family: var(--font-family-heading);
     font-size: 1.1rem;
     color: var(--dark-color);
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
     list-style-type: none;
     border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
     margin-bottom: 0.5rem;
@@ -429,7 +429,7 @@
       padding: 0.7rem 1.5rem;
       color: var(--dark-color);
       text-decoration: none;
-      font-family: "Raleway", sans-serif;
+      font-family: var(--font-family-body);
       font-size: 0.95rem;
       transition: all 0.2s ease;
       position: relative;
@@ -441,7 +441,7 @@
       }
 
       &.view-all {
-        font-weight: 600;
+        font-weight: var(--font-weight-semibold);
         color: var(--primary-color);
 
         &:hover {
@@ -526,7 +526,27 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: bold;
+      font-weight: var(--font-weight-bold);
+    }
+    
+    // Styling für ausgegraute Aktionsschaltflächen
+    &.disabled {
+      opacity: 0.4;
+      pointer-events: none;
+      cursor: default;
+      background-color: rgba(0, 0, 0, 0.03);
+      color: rgba(var(--dark-color-rgb, 40, 40, 40), 0.6);
+      transform: none;
+      
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.03);
+        color: rgba(var(--dark-color-rgb, 40, 40, 40), 0.6);
+        transform: none;
+      }
+      
+      svg {
+        color: inherit;
+      }
     }
   }
 }

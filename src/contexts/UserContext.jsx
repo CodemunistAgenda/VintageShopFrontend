@@ -7,106 +7,152 @@ const UserContext = createContext();
 export function UserProvider({ children }) {
   // Benutzerzustände
   const [user, setUser] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [wishlist, setWishlist] = useState([]);
+  const [error, setError] = useState(null);
 
-  // Benutzer aus localStorage laden (beim ersten Laden)
+  // Beim Laden prüfen, ob ein Token im localStorage ist
   useEffect(() => {
-    const savedUser = localStorage.getItem("user");
-    const savedWishlist = localStorage.getItem("wishlist");
-
-    if (savedUser) {
+    const checkAuthStatus = async () => {
       try {
-        const parsedUser = JSON.parse(savedUser);
-        setUser(parsedUser);
-      } catch (error) {
-        console.error("Failed to parse user from localStorage", error);
+        setLoading(true);
+        const token = localStorage.getItem('auth_token');
+        
+        if (token) {
+          // Hier könnte ein API-Aufruf zur Validierung des Tokens erfolgen
+          const userData = await validateToken(token);
+          setUser(userData);
+          setIsAuthenticated(true);
+        }
+      } catch (err) {
+        console.error("Authentifizierungsfehler:", err);
+        // Bei Fehler Token entfernen
+        localStorage.removeItem('auth_token');
+        setError("Sitzung abgelaufen. Bitte erneut anmelden.");
+        setUser(null);
+        setIsAuthenticated(false);
+      } finally {
+        setLoading(false);
       }
-    }
+    };
 
-    if (savedWishlist) {
-      try {
-        const parsedWishlist = JSON.parse(savedWishlist);
-        setWishlist(parsedWishlist);
-      } catch (error) {
-        console.error("Failed to parse wishlist from localStorage", error);
-      }
-    }
-
-    setLoading(false);
+    checkAuthStatus();
   }, []);
 
-  // Benutzer in localStorage speichern (bei Änderungen)
-  useEffect(() => {
-    if (user) {
-      localStorage.setItem("user", JSON.stringify(user));
-    } else {
-      localStorage.removeItem("user");
-    }
-  }, [user]);
+  // Hilfsfunktion zur Token-Validierung (Dummy-Implementation)
+  const validateToken = async (token) => {
+    // In einer echten Anwendung würde hier ein API-Call erfolgen
+    // Beispiel: return await api.get('/auth/me', { headers: { Authorization: `Bearer ${token}` } });
+    
+    // Dummy-Implementierung für die Demo
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({ id: 1, username: "testuser", email: "test@example.com" });
+      }, 500);
+    });
+  };
 
-  // Wunschliste in localStorage speichern (bei Änderungen)
-  useEffect(() => {
-    localStorage.setItem("wishlist", JSON.stringify(wishlist));
-  }, [wishlist]);
-
-  // Login/Logout-Funktionen
-  const login = async (email, password) => {
+  // Login-Funktion
+  const login = async (email, password, rememberMe = false) => {
     try {
-      // In Produktion: API-Aufruf zur Authentifizierung
-      // const response = await fetch('/api/login', { ... });
-      // const data = await response.json();
-
-      // Dummy-Login für Beispiel
-      const userData = {
-        id: 1,
-        name: "Max Mustermann",
-        email: email,
-        role: "customer",
-      };
-
+      setLoading(true);
+      setError(null);
+      
+      // In einer echten Anwendung würde hier ein API-Call erfolgen
+      // Beispiel: const response = await api.post('/auth/login', { email, password });
+      
+      // Dummy-Implementation für die Demo
+      await new Promise(resolve => setTimeout(resolve, 800));
+      
+      const userData = { id: 1, username: 'testuser', email };
+      const token = 'dummy_token_123';
+      
+      // Token speichern (bei rememberMe evtl. mit längerer Ablaufzeit)
+      if (rememberMe) {
+        localStorage.setItem('auth_token', token);
+      } else {
+        sessionStorage.setItem('auth_token', token);
+      }
+      
       setUser(userData);
-      return { success: true };
-    } catch (error) {
-      console.error("Login failed", error);
-      return { success: false, error: "Login fehlgeschlagen" };
+      setIsAuthenticated(true);
+      
+      return userData;
+    } catch (err) {
+      console.error("Login-Fehler:", err);
+      setError(err.message || "Login fehlgeschlagen. Bitte überprüfe deine Anmeldedaten.");
+      throw err;
+    } finally {
+      setLoading(false);
     }
   };
 
+  // Registrierungs-Funktion
+  const register = async (username, email, password) => {
+    try {
+      setLoading(true);
+      setError(null);
+      
+      // In einer echten Anwendung würde hier ein API-Call erfolgen
+      // Beispiel: const response = await api.post('/auth/register', { username, email, password });
+      
+      // Dummy-Implementation für die Demo
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      const userData = { id: 1, username, email };
+      
+      // Hier würde normalerweise direkt ein Login erfolgen
+      return userData;
+    } catch (err) {
+      console.error("Registrierungsfehler:", err);
+      setError(err.message || "Registrierung fehlgeschlagen. Bitte versuche es erneut.");
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Logout-Funktion
   const logout = () => {
+    localStorage.removeItem('auth_token');
+    sessionStorage.removeItem('auth_token');
     setUser(null);
+    setIsAuthenticated(false);
   };
 
-  // Wunschlisten-Funktionen
-  const addToWishlist = (product) => {
-    if (!wishlist.some((item) => item.id === product.id)) {
-      setWishlist([...wishlist, product]);
+  // Passwort-Reset-Funktion (Dummy-Implementation)
+  const requestPasswordReset = async (email) => {
+    try {
+      setLoading(true);
+      setError(null);
+      
+      // In einer echten Anwendung würde hier ein API-Call erfolgen
+      // Beispiel: await api.post('/auth/reset-password', { email });
+      
+      // Dummy-Implementation für die Demo
+      await new Promise(resolve => setTimeout(resolve, 800));
+      
+      return true;
+    } catch (err) {
+      console.error("Fehler beim Passwort-Reset:", err);
+      setError(err.message || "Passwort-Reset fehlgeschlagen. Bitte versuche es später erneut.");
+      throw err;
+    } finally {
+      setLoading(false);
     }
-  };
-
-  const removeFromWishlist = (productId) => {
-    setWishlist(wishlist.filter((item) => item.id !== productId));
-  };
-
-  // Prüfen, ob ein Produkt auf der Wunschliste ist
-  const isInWishlist = (productId) => {
-    return wishlist.some((item) => item.id === productId);
   };
 
   // Context-Wert
   const value = {
-    // Daten
     user,
-    wishlist,
+    isAuthenticated,
     loading,
-    isLoggedIn: !!user,
-
-    // Funktionen
+    error,
     login,
+    register,
     logout,
-    addToWishlist,
-    removeFromWishlist,
-    isInWishlist,
+    requestPasswordReset,
+    setError,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
@@ -115,8 +161,10 @@ export function UserProvider({ children }) {
 // Custom Hook für einfachen Zugriff
 export function useUser() {
   const context = useContext(UserContext);
+  
   if (context === undefined) {
     throw new Error("useUser must be used within a UserProvider");
   }
+  
   return context;
 }

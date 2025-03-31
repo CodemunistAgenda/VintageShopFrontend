@@ -2,13 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './styles/Footer.scss';
 import { 
-  FaFacebookF, 
   FaInstagram, 
-  FaTwitter, 
   FaPinterestP, 
   FaEnvelope, 
   FaPhone, 
-  FaMapMarkerAlt 
+  FaMapMarkerAlt,
+  FaTiktok 
 } from 'react-icons/fa';
 
 function Footer() {
@@ -73,14 +72,11 @@ function Footer() {
               </ul>
               
               <div className="social-links">
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Facebook">
-                  <FaFacebookF />
-                </a>
                 <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Instagram">
                   <FaInstagram />
                 </a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Twitter">
-                  <FaTwitter />
+                <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="TikTok">
+                  <FaTiktok />
                 </a>
                 <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Pinterest">
                   <FaPinterestP />
@@ -88,17 +84,6 @@ function Footer() {
               </div>
             </div>
           </div>
-        </div>
-        
-        <div className="newsletter">
-          <div className="newsletter-content">
-            <h4 className="newsletter-heading">Neuigkeiten entdecken</h4>
-            <p className="newsletter-text">Melde dich für unseren Newsletter an und erhalte als Erstes Zugang zu neuen Vintage-Funden und exklusiven Angeboten.</p>
-          </div>
-          <form className="newsletter-form">
-            <input type="email" placeholder="Deine E-Mail-Adresse" className="newsletter-input" required />
-            <button type="submit" className="newsletter-button">Anmelden</button>
-          </form>
         </div>
         
         <div className="footer-bottom">

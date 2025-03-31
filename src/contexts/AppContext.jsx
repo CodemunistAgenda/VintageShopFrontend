@@ -23,30 +23,30 @@ export function AppProvider({ children }) {
     // Scroll-Handler
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-
+      
       // Beim Runterscrollen Dropdown schließen (nur im Desktop-Modus)
       if (currentScrollY > prevScrollY && !isMobile) {
         if (activeDropdown !== null) {
           setActiveDropdown(null);
         }
       }
-
+      
       // Scrolled-Zustand setzen (für Navigationsstil)
       setScrolled(currentScrollY > 20);
-
+      
       // Transparenz-Zustand setzen
       setTransparent(currentScrollY > 200);
-
       setPrevScrollY(currentScrollY);
     };
 
     // Initial prüfen
     checkIfMobile();
-
+    handleScroll(); // Auch den Scroll-Status initial setzen
+    
     // Event-Listener registrieren
     window.addEventListener("resize", checkIfMobile);
     window.addEventListener("scroll", handleScroll);
-
+    
     // Aufräumen
     return () => {
       window.removeEventListener("resize", checkIfMobile);
@@ -71,7 +71,6 @@ export function AppProvider({ children }) {
     scrolled,
     transparent,
     isMobile,
-
     // Funktionen
     toggleMenu,
     toggleDropdown,
@@ -85,8 +84,10 @@ export function AppProvider({ children }) {
 // Custom Hook für einfachen Zugriff
 export function useAppContext() {
   const context = useContext(AppContext);
+  
   if (context === undefined) {
     throw new Error("useAppContext must be used within an AppProvider");
   }
+  
   return context;
 }

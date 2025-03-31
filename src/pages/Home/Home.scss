@@ -1,5 +1,6 @@
 // Home.scss - Styles für die Startseite im Retro-Vintage-Design
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap');
+// Der Schriftarten-Import wurde in _variables.scss verschoben
+// @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap');
 
 // Einfaches Responsive Mixin
 @mixin respond-to($breakpoint) {
@@ -20,7 +21,7 @@
 
 .home-container {
   position: relative;
-  font-family: 'Raleway', sans-serif;
+  font-family: var(--font-family-body);
   
   .home-main {
     padding-top: 120px; // Abstand für die fixierte Navigation
@@ -54,8 +55,8 @@
   }
   
   .section-title {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
+    font-family: var(--font-family-heading);
+    font-weight: var(--font-weight-bold);
     font-size: 2.5rem;
     margin-bottom: 1rem;
     color: var(--dark-color);
@@ -121,9 +122,9 @@
     }
     
     .hero-title {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-family-heading);
       font-size: 4rem;
-      font-weight: 700;
+      font-weight: var(--font-weight-bold);
       line-height: 1.1;
       margin-bottom: 1.5rem;
       color: var(--dark-color);
@@ -156,7 +157,7 @@
     
     .hero-description {
       font-size: 1.4rem;
-      font-weight: 300;
+      font-weight: var(--font-weight-light);
       line-height: 1.6;
       margin-bottom: 2.5rem;
       color: var(--dark-color);
@@ -276,9 +277,9 @@
       }
       
       .category-title {
-        font-family: 'Playfair Display', serif;
+        font-family: var(--font-family-heading);
         font-size: 1.4rem;
-        font-weight: 700;
+        font-weight: var(--font-weight-bold);
         margin-bottom: 0.8rem;
         position: relative;
         
@@ -305,7 +306,7 @@
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        font-weight: 600;
+        font-weight: var(--font-weight-semibold);
         font-size: 0.9rem;
         color: var(--dark-color);
         transition: all 0.3s ease;
@@ -391,7 +392,7 @@
         background-color: var(--primary-color);
         color: white;
         font-size: 0.7rem;
-        font-weight: 600;
+        font-weight: var(--font-weight-semibold);
         padding: 0.3rem 0.8rem;
         border-radius: 20px;
         z-index: 2;
@@ -410,9 +411,9 @@
       }
       
       .product-title {
-        font-family: 'Playfair Display', serif;
+        font-family: var(--font-family-heading);
         font-size: 1.1rem;
-        font-weight: 700;
+        font-weight: var(--font-weight-bold);
         margin-bottom: 0.8rem;
         line-height: 1.3;
         color: var(--dark-color);
@@ -420,7 +421,7 @@
       }
       
       .product-price {
-        font-weight: 600;
+        font-weight: var(--font-weight-semibold);
         font-size: 1rem;
         
         .current-price {
@@ -487,9 +488,9 @@
     }
     
     .value-title {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-family-heading);
       font-size: 1.4rem;
-      font-weight: 700;
+      font-weight: var(--font-weight-bold);
       margin-bottom: 1rem;
       position: relative;
       display: inline-block;
@@ -551,9 +552,9 @@
     }
     
     .newsletter-title {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-family-heading);
       font-size: 2rem;
-      font-weight: 700;
+      font-weight: var(--font-weight-bold);
       margin-bottom: 1rem;
       
       @include respond-to(medium) {
@@ -587,7 +588,7 @@
         padding: 0.8rem 1.5rem;
         border: 1px solid rgba(0, 0, 0, 0.1);
         border-radius: 4px 0 0 4px;
-        font-family: 'Raleway', sans-serif;
+        font-family: var(--font-family-body);
         
         &:focus {
           outline: none;
@@ -603,6 +604,7 @@
       .newsletter-button {
         padding: 0 1.5rem;
         border-radius: 0 4px 4px 0;
+        z-index: 1;
         
         @include respond-to(small) {
           width: 100%;
@@ -618,8 +620,8 @@
     align-items: center;
     justify-content: center;
     padding: 0.8rem 1.8rem;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 600;
+    font-family: var(--font-family-body);
+    font-weight: var(--font-weight-semibold);
     font-size: 1rem;
     text-decoration: none;
     border-radius: 4px;

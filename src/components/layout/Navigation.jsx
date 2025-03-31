@@ -36,6 +36,12 @@ const Navigation = () => {
   // Verwende den UserContext für Wunschlisten-Informationen
   const { wishlist } = useUser();
   
+  // Bestimme den Status der Badges und Buttons
+  const cartItemCount = cart?.itemCount || 0;
+  const wishlistItemCount = wishlist?.length || 0;
+  const hasCartItems = cartItemCount > 0;
+  const hasWishlistItems = wishlistItemCount > 0;
+  
   return (
     <nav className={`navigation-header ${scrolled ? 'scrolled' : ''} ${transparent ? 'transparent' : ''}`}>
       <div className="navigation-container">
@@ -165,13 +171,23 @@ const Navigation = () => {
             <Link to="/account" className="action-button account-button" aria-label="Konto">
               <FaUser />
             </Link>
-            <Link to="/wishlist" className="action-button wishlist-button" aria-label="Wunschliste">
+            <Link 
+              to="/wishlist" 
+              className={`action-button wishlist-button ${!hasWishlistItems ? 'disabled' : ''}`} 
+              aria-label="Wunschliste"
+              onClick={e => !hasWishlistItems && e.preventDefault()}
+            >
               <FaHeart />
-              <span className="badge">{wishlist?.length || 0}</span>
+              {hasWishlistItems && <span className="badge">{wishlistItemCount}</span>}
             </Link>
-            <Link to="/cart" className="action-button cart-button" aria-label="Warenkorb">
+            <Link 
+              to="/cart" 
+              className={`action-button cart-button ${!hasCartItems ? 'disabled' : ''}`} 
+              aria-label="Warenkorb"
+              onClick={e => !hasCartItems && e.preventDefault()}
+            >
               <FaShoppingCart />
-              <span className="badge">{cart?.itemCount || 0}</span>
+              {hasCartItems && <span className="badge">{cartItemCount}</span>}
             </Link>
           </div>
         </div>
