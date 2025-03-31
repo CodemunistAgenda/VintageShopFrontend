@@ -11,12 +11,15 @@ export function UserProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Beim Laden prüfen, ob ein Token im localStorage ist
+  // Beim Laden prüfen, ob ein Token im localStorage oder sessionStorage ist
   useEffect(() => {
     const checkAuthStatus = async () => {
       try {
         setLoading(true);
-        const token = localStorage.getItem('auth_token');
+        // Prüfe sowohl localStorage als auch sessionStorage
+        const persistentToken = localStorage.getItem('auth_token');
+        const sessionToken = sessionStorage.getItem('auth_token');
+        const token = persistentToken || sessionToken;
         
         if (token) {
           // Hier könnte ein API-Aufruf zur Validierung des Tokens erfolgen
@@ -28,6 +31,7 @@ export function UserProvider({ children }) {
         console.error("Authentifizierungsfehler:", err);
         // Bei Fehler Token entfernen
         localStorage.removeItem('auth_token');
+        sessionStorage.removeItem('auth_token');
         setError("Sitzung abgelaufen. Bitte erneut anmelden.");
         setUser(null);
         setIsAuthenticated(false);
@@ -58,6 +62,11 @@ export function UserProvider({ children }) {
       setLoading(true);
       setError(null);
       
+      // Sicherheitsmaßnahmen: Überprüfen Sie die Eingaben auf Client-Seite
+      if (!email || !password) {
+        throw new Error("E-Mail und Passwort sind erforderlich");
+      }
+      
       // In einer echten Anwendung würde hier ein API-Call erfolgen
       // Beispiel: const response = await api.post('/auth/login', { email, password });
       
@@ -65,13 +74,17 @@ export function UserProvider({ children }) {
       await new Promise(resolve => setTimeout(resolve, 800));
       
       const userData = { id: 1, username: 'testuser', email };
-      const token = 'dummy_token_123';
+      const token = 'dummy_token_' + Math.random().toString(36).substring(2);
       
-      // Token speichern (bei rememberMe evtl. mit längerer Ablaufzeit)
+      // Token speichern basierend auf rememberMe-Option
       if (rememberMe) {
         localStorage.setItem('auth_token', token);
+        // Aus Sicherheitsgründen: Entferne session token, wenn persistent token gesetzt wird
+        sessionStorage.removeItem('auth_token');
       } else {
+        // Wenn nicht "angemeldet bleiben", dann nur im sessionStorage speichern
         sessionStorage.setItem('auth_token', token);
+        localStorage.removeItem('auth_token');
       }
       
       setUser(userData);
@@ -93,6 +106,19 @@ export function UserProvider({ children }) {
       setLoading(true);
       setError(null);
       
+      // Sicherheitsmaßnahmen: Überprüfen Sie die Eingaben auf Client-Seite
+      if (!username || !email || !password) {
+        throw new Error("Alle Felder sind erforderlich");
+      }
+      
+      // Passwortrichtlinien hier noch einmal überprüfen
+      if (password.length < 8 || 
+          !/(?=.*[A-Z])/.test(password) || 
+          !/(?=.*[0-9])/.test(password) ||
+          !/(?=.*[!@#$%^&*])/.test(password)) {
+        throw new Error("Das Passwort erfüllt nicht die Sicherheitsanforderungen");
+      }
+      
       // In einer echten Anwendung würde hier ein API-Call erfolgen
       // Beispiel: const response = await api.post('/auth/register', { username, email, password });
       
@@ -101,7 +127,9 @@ export function UserProvider({ children }) {
       
       const userData = { id: 1, username, email };
       
-      // Hier würde normalerweise direkt ein Login erfolgen
+      // Hier würde die Antwort vom Backend verarbeitet,
+      // aber wir initiieren keinen automatischen Login nach der Registrierung
+      
       return userData;
     } catch (err) {
       console.error("Registrierungsfehler:", err);
@@ -114,10 +142,14 @@ export function UserProvider({ children }) {
 
   // Logout-Funktion
   const logout = () => {
+    // Token aus beiden Speichern entfernen
     localStorage.removeItem('auth_token');
     sessionStorage.removeItem('auth_token');
+    
+    // Benutzerdaten zurücksetzen
     setUser(null);
     setIsAuthenticated(false);
+    setError(null);
   };
 
   // Passwort-Reset-Funktion (Dummy-Implementation)
@@ -125,6 +157,10 @@ export function UserProvider({ children }) {
     try {
       setLoading(true);
       setError(null);
+      
+      if (!email) {
+        throw new Error("E-Mail-Adresse ist erforderlich");
+      }
       
       // In einer echten Anwendung würde hier ein API-Call erfolgen
       // Beispiel: await api.post('/auth/reset-password', { email });

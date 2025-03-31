@@ -77,6 +77,12 @@ const AccountPage = () => {
     setRegisterSuccess('');
   }, []);
   
+  // Verhindert Kopieren, Ausschneiden und Einfügen in Passwortfeldern
+  const preventCopyPaste = useCallback((e) => {
+    e.preventDefault();
+    return false;
+  }, []);
+  
   // Login-Form Handler
   const handleLoginChange = useCallback((e) => {
     const { name, value, type, checked } = e.target;
@@ -203,9 +209,13 @@ const AccountPage = () => {
       return;
     }
     
+    // Nur die notwendigen Daten für die Registrierung extrahieren
+    // confirmPassword wird bewusst ausgelassen und nicht ans Backend gesendet
+    const { username, email, password } = registerData;
+    
     // Registrierungs-Logik hier
     try {
-      await register(registerData.username, registerData.email, registerData.password);
+      await register(username, email, password);
       setRegisterSuccess('Dein Konto wurde erfolgreich erstellt! Du kannst dich jetzt anmelden.');
       setRegisterErrors({});
       
@@ -305,6 +315,10 @@ const AccountPage = () => {
                   placeholder="Mindestens 8 Zeichen"
                   className={loginErrors.password ? 'has-error' : ''}
                   disabled={loading}
+                  onCopy={preventCopyPaste}
+                  onCut={preventCopyPaste}
+                  onPaste={preventCopyPaste}
+                  autoComplete="current-password"
                 />
                 <button 
                   type="button" 
@@ -383,6 +397,7 @@ const AccountPage = () => {
                   placeholder="dein_benutzername"
                   className={registerErrors.username ? 'has-error' : ''}
                   disabled={loading}
+                  autoComplete="username"
                 />
               </div>
               {registerErrors.username && <div className="error-message">{registerErrors.username}</div>}
@@ -401,6 +416,7 @@ const AccountPage = () => {
                   placeholder="deine.email@beispiel.de"
                   className={registerErrors.email ? 'has-error' : ''}
                   disabled={loading}
+                  autoComplete="email"
                 />
               </div>
               {registerErrors.email && <div className="error-message">{registerErrors.email}</div>}
@@ -419,6 +435,10 @@ const AccountPage = () => {
                   placeholder="Mind. 8 Zeichen, 1 Großbuchstabe, 1 Ziffer, 1 Sonderzeichen"
                   className={registerErrors.password ? 'has-error' : ''}
                   disabled={loading}
+                  onCopy={preventCopyPaste}
+                  onCut={preventCopyPaste}
+                  onPaste={preventCopyPaste}
+                  autoComplete="new-password"
                 />
                 <button 
                   type="button" 
@@ -446,6 +466,10 @@ const AccountPage = () => {
                   placeholder="Passwort wiederholen"
                   className={registerErrors.confirmPassword ? 'has-error' : ''}
                   disabled={loading}
+                  onCopy={preventCopyPaste}
+                  onCut={preventCopyPaste}
+                  onPaste={preventCopyPaste}
+                  autoComplete="new-password"
                 />
                 <button 
                   type="button" 

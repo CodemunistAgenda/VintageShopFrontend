@@ -52,6 +52,35 @@
   }
 }
 
+// Ladeindikator
+.loading-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid rgba(210, 180, 140, 0.3);
+    border-top-color: #d2b48c;
+    animation: spin 1s infinite linear;
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    color: #777;
+    font-size: var(--font-size-sm);
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 // Seitentitel
 .page-title {
   font-family: 'Playfair Display', serif; // Vintage-Schriftart
@@ -122,6 +151,11 @@
         transform: scaleX(1);
       }
     }
+    
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
   }
 }
 
@@ -190,6 +224,18 @@
     font-size: var(--font-size-base);
     color: var(--dark-color);
     font-family: var(--font-family-body);
+    
+    // Sonderfall für Passwortfelder mit Kopierschutz
+    &[type="password"] {
+      // Für Safari
+      -webkit-user-select: none;
+      // Für andere Browser
+      user-select: none;
+      
+      &::selection {
+        background-color: transparent;
+      }
+    }
 
     &::placeholder {
       color: rgba(0, 0, 0, 0.4);
@@ -204,6 +250,12 @@
     &.has-error {
       border-color: var(--accent-color);
     }
+    
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      background-color: rgba(0, 0, 0, 0.02);
+    }
   }
 
   .toggle-password {
@@ -216,6 +268,11 @@
 
     &:hover {
       color: #c29a6a;
+    }
+    
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
     }
   }
 }
@@ -304,6 +361,11 @@
         outline: none;
         box-shadow: 0 0 0 3px rgba(210, 180, 140, 0.1);
       }
+      
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
     }
 
     label {
@@ -373,6 +435,16 @@
   &:active {
     transform: translateY(0);
   }
+  
+  &:disabled {
+    background-color: #e6d7c3;
+    cursor: not-allowed;
+    transform: none;
+    
+    &::before {
+      display: none;
+    }
+  }
 }
 
 // Alternative Action
@@ -391,9 +463,16 @@
     font-weight: var(--font-weight-semibold);
     cursor: pointer;
     @include transition();
+    margin-left: 0.3rem;
 
     &:hover {
       text-decoration: underline;
+    }
+    
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      text-decoration: none;
     }
   }
 }
