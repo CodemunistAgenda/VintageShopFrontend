@@ -550,3 +550,13 @@
     }
   }
 }
+
+.site-logo {
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 0.3rem;
+
+  @media (max-width: 768px) {
+    height: 60px;
+  }
+}

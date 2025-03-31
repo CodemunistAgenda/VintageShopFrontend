@@ -1,8 +1,7 @@
-// Account.scss - Styles für die Anmelde- und Registrierungsseite
 @use "../../styles/abstracts/mixins" as *;
 @use "../../styles/abstracts/variables" as *;
 
-// Account Seite Container
+
 .account-page {
   min-height: 100vh;
   display: flex;
@@ -23,7 +22,7 @@
   }
 }
 
-// Hauptcontainer
+
 .account-container {
   width: 100%;
   max-width: 500px;
@@ -32,12 +31,9 @@
   border-radius: var(--border-radius-medium);
   overflow: hidden;
   @include box-shadow(0, 4px, 15px, 0, rgba(0, 0, 0, 0.08));
-  position: relative;
-  
-  // Vintage-Style für den Container
   border: 1px solid rgba(0, 0, 0, 0.05);
   position: relative;
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -52,16 +48,16 @@
   }
 }
 
-// Seitentitel
+
 .page-title {
-  font-family: 'Playfair Display', serif; // Vintage-Schriftart
+  font-family: 'Playfair Display', serif;
   font-size: 2.2rem;
   color: var(--dark-color);
   margin-bottom: 1.5rem;
   text-align: center;
   font-weight: 700;
   position: relative;
-  
+
   &::after {
     content: '';
     position: absolute;
@@ -79,7 +75,7 @@
   }
 }
 
-// Tab Navigation
+
 .tab-navigation {
   @include flex(row, nowrap, center, center);
   width: 100%;
@@ -106,13 +102,13 @@
       left: 0;
       width: 100%;
       height: 3px;
-      background-color: #d2b48c; // Vintage-Farbe für den aktiven Tab
+      background-color: #d2b48c;
       transform: scaleX(0);
       transition: transform 0.3s ease;
     }
 
     &:hover {
-      color: #c29a6a; // Vintage-Hover-Farbe
+      color: #c29a6a;
     }
 
     &.active {
@@ -123,320 +119,4 @@
       }
     }
   }
-}
-
-// Form Container
-.form-container {
-  padding: 2rem;
-  display: none;
-
-  &.active {
-    display: block;
-    animation: fadeIn 0.3s ease forwards;
-  }
-
-  @include respond-to(small) {
-    padding: 1.5rem;
-  }
-}
-
-// Auth Form
-.auth-form {
-  margin-bottom: 1.5rem;
-}
-
-// Form Groups
-.form-group {
-  margin-bottom: 1.5rem;
-
-  label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: var(--font-weight-semibold);
-    font-size: var(--font-size-sm);
-    color: var(--dark-color);
-  }
-}
-
-// Input Wrapper
-.input-wrapper {
-  position: relative;
-  @include flex(row, nowrap, flex-start, center);
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: var(--border-radius-small);
-  @include transition();
-  background-color: rgba(255, 255, 255, 0.8);
-  // Vintage-Style für Input-Felder
-  border-bottom: 2px solid rgba(210, 180, 140, 0.3);
-
-  &:focus-within {
-    border-color: #d2b48c;
-    box-shadow: 0 0 0 3px rgba(210, 180, 140, 0.1);
-    border-bottom-color: #c29a6a;
-  }
-
-  .input-icon {
-    margin-left: 1rem;
-    color: var(--dark-color);
-    opacity: 0.5;
-    min-width: 1rem;
-  }
-
-  input {
-    width: 100%;
-    padding: 0.9rem 1rem;
-    border: none;
-    background: none;
-    font-size: var(--font-size-base);
-    color: var(--dark-color);
-    font-family: var(--font-family-body);
-
-    &::placeholder {
-      color: rgba(0, 0, 0, 0.4);
-      font-size: var(--font-size-sm);
-      font-style: italic;
-    }
-
-    &:focus {
-      outline: none;
-    }
-
-    &.has-error {
-      border-color: var(--accent-color);
-    }
-  }
-
-  .toggle-password {
-    background: none;
-    border: none;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    color: rgba(0, 0, 0, 0.5);
-    @include transition();
-
-    &:hover {
-      color: #c29a6a;
-    }
-  }
-}
-
-// Error styling
-.has-error {
-  border-color: var(--accent-color) !important;
-}
-
-.error-message {
-  margin-top: 0.5rem;
-  font-size: var(--font-size-xs);
-  color: var(--accent-color);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-
-  svg {
-    font-size: 0.8rem;
-  }
-
-  &.general-error {
-    background-color: rgba(217, 88, 65, 0.1);
-    padding: 0.7rem 1rem;
-    border-radius: var(--border-radius-small);
-    margin-bottom: 1.5rem;
-  }
-}
-
-// Success message
-.success-message {
-  margin-bottom: 1.5rem;
-  padding: 0.7rem 1rem;
-  background-color: rgba(194, 217, 65, 0.15);
-  border-radius: var(--border-radius-small);
-  color: darken($secondary-color, 20%);
-  font-size: var(--font-size-sm);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-
-  svg {
-    color: darken($secondary-color, 10%);
-  }
-}
-
-// Form Options
-.form-options {
-  @include flex(row, wrap, space-between, center);
-  margin-bottom: 1.5rem;
-  font-size: var(--font-size-sm);
-
-  .remember-me {
-    @include flex(row, nowrap, flex-start, center);
-    gap: 0.5rem;
-
-    input[type="checkbox"] {
-      appearance: none;
-      -webkit-appearance: none;
-      width: 1.1rem;
-      height: 1.1rem;
-      border: 1px solid rgba(0, 0, 0, 0.2);
-      border-radius: var(--border-radius-small);
-      position: relative;
-      cursor: pointer;
-      @include transition();
-
-      &:checked {
-        background-color: #d2b48c;
-        border-color: #c29a6a;
-
-        &::after {
-          content: '';
-          position: absolute;
-          top: 2px;
-          left: 5px;
-          width: 4px;
-          height: 8px;
-          border: solid white;
-          border-width: 0 2px 2px 0;
-          transform: rotate(45deg);
-        }
-      }
-
-      &:focus {
-        outline: none;
-        box-shadow: 0 0 0 3px rgba(210, 180, 140, 0.1);
-      }
-    }
-
-    label {
-      cursor: pointer;
-      margin-bottom: 0;
-    }
-  }
-
-  .forgot-password {
-    color: #c29a6a;
-    text-decoration: none;
-    @include transition();
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
-  @include respond-to(small) {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-}
-
-// Submit Button - mit Vintage-Stil
-.submit-button {
-  width: 100%;
-  padding: 1rem;
-  background-color: #d2b48c;
-  color: var(--white-color);
-  border: none;
-  border-radius: var(--border-radius-small);
-  font-weight: var(--font-weight-semibold);
-  font-size: var(--font-size-base);
-  cursor: pointer;
-  @include transition();
-  position: relative;
-  overflow: hidden;
-  
-  // Vintage-Stil Button
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      to right,
-      transparent,
-      rgba(255, 255, 255, 0.2),
-      transparent
-    );
-    transition: left 0.5s ease;
-  }
-
-  &:hover {
-    background-color: #c29a6a;
-    transform: translateY(-2px);
-    
-    &::before {
-      left: 100%;
-    }
-  }
-
-  &:active {
-    transform: translateY(0);
-  }
-}
-
-// Alternative Action
-.alt-action {
-  text-align: center;
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px dashed rgba(0, 0, 0, 0.1);
-  font-size: var(--font-size-sm);
-
-  .switch-tab-link {
-    background: none;
-    border: none;
-    padding: 0;
-    color: #c29a6a;
-    font-weight: var(--font-weight-semibold);
-    cursor: pointer;
-    @include transition();
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-}
-
-// Terms and Privacy
-.terms-privacy {
-  margin-bottom: 1.5rem;
-  font-size: var(--font-size-xs);
-  color: rgba(0, 0, 0, 0.6);
-  line-height: 1.5;
-  text-align: center;
-  padding: 0.8rem;
-  background-color: rgba(245, 245, 240, 0.4);
-  border-radius: var(--border-radius-small);
-  border: 1px dashed rgba(210, 180, 140, 0.3);
-
-  a {
-    color: #c29a6a;
-    text-decoration: none;
-    font-weight: var(--font-weight-semibold);
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-}
-
-// Animations
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-// Zusätzlich eine dunkle CSS-Variable für RGB-Werte und Vintage-Farben
-:root {
-  --dark-color-rgb: 52, 58, 64;
-  --primary-vintage: #d2b48c;
-  --primary-vintage-dark: #c29a6a;
-  --primary-vintage-light: #e6d7c3;
 }

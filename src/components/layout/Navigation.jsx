@@ -1,63 +1,49 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import '../layout/styles/Navigation.scss';
+import React from "react";
+import { Link } from "react-router-dom";
+import "../layout/styles/Navigation.scss";
 import {
   FaSearch,
   FaUser,
   FaHeart,
   FaShoppingCart,
-  FaChevronDown
-} from 'react-icons/fa';
+  FaChevronDown,
+} from "react-icons/fa";
 import {
   GiVintageRobot,
   GiRecycle,
   GiNotebook,
-  GiDiamondTrophy
-} from 'react-icons/gi';
-import { useAppContext } from '../../contexts/AppContext';
-import { useCart } from '../../contexts/CartContext';
-import { useUser } from '../../contexts/UserContext';
+  GiDiamondTrophy,
+} from "react-icons/gi";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleMenu, toggleDropdown } from "@/store/slices/uiSlice"; // ✅ Redux'taki UI slice
 
 const Navigation = () => {
-  // Verwende den AppContext für UI-Zustände
-  const { 
-    isMenuOpen, 
-    activeDropdown, 
-    scrolled, 
-    transparent, 
-    isMobile,
-    toggleMenu, 
-    toggleDropdown 
-  } = useAppContext();
-  
-  // Verwende den CartContext für Warenkorb-Informationen
-  const { cart } = useCart();
-  
-  // Verwende den UserContext für Wunschlisten-Informationen
-  const { wishlist } = useUser();
-  
-  // Bestimme den Status der Badges und Buttons
-  const cartItemCount = cart?.itemCount || 0;
-  const wishlistItemCount = wishlist?.length || 0;
+  const dispatch = useDispatch();
+  const { isMenuOpen, activeDropdown, scrolled, transparent, isMobile } =
+    useSelector((state) => state.ui);
+
+  const cartItemCount = useSelector((state) => state.cart.totalCount);
+  const wishlistItemCount = useSelector((state) => state.wishlist.items.length);
+
   const hasCartItems = cartItemCount > 0;
   const hasWishlistItems = wishlistItemCount > 0;
-  
+
   return (
-    <nav className={`navigation-header ${scrolled ? 'scrolled' : ''} ${transparent ? 'transparent' : ''}`}>
+    <nav
+      className={`navigation-header ${scrolled ? "scrolled" : ""} ${
+        transparent ? "transparent" : ""
+      }`}
+    >
       <div className="navigation-container">
         <div className="logo-container">
           <Link to="/" className="logo">
-            <div className="logo-text">
-              <span className="logo-retro">Retro</span>
-              <span className="logo-y">y</span>
-            </div>
-            <div className="logo-tagline">Vintage • Upcycled • Design</div>
+            <img src="/logo.png" alt="Logo" className="site-logo" />
           </Link>
         </div>
 
-        <button 
-          className={`menu-toggle ${isMenuOpen ? 'active' : ''}`} 
-          onClick={toggleMenu} 
+        <button
+          className={`menu-toggle ${isMenuOpen ? "active" : ""}`}
+          onClick={() => dispatch(toggleMenu())}
           aria-label="Toggle menu"
         >
           <span></span>
@@ -65,22 +51,28 @@ const Navigation = () => {
           <span></span>
         </button>
 
-        <div className={`main-navigation ${isMenuOpen ? 'open' : ''}`}>
+        <div className={`main-navigation ${isMenuOpen ? "open" : ""}`}>
           <ul className="nav-links">
             <li className="nav-item">
-              <Link to="/" className="nav-link">Home</Link>
+              <Link to="/" className="nav-link">
+                Home
+              </Link>
             </li>
-            
-            <li className={`nav-item dropdown ${activeDropdown === 'shop' ? 'active' : ''}`}>
-              <button 
-                className="nav-link dropdown-toggle" 
-                onClick={() => toggleDropdown('shop')}
-                aria-expanded={activeDropdown === 'shop'}
+
+            <li
+              className={`nav-item dropdown ${
+                activeDropdown === "shop" ? "active" : ""
+              }`}
+            >
+              <button
+                className="nav-link dropdown-toggle"
+                onClick={() => dispatch(toggleDropdown("shop"))}
+                aria-expanded={activeDropdown === "shop"}
               >
                 Shop
                 <FaChevronDown className="dropdown-icon" />
               </button>
-              
+
               <ul className="dropdown-menu">
                 <li className="category-title">Kategorien</li>
                 <li className="dropdown-item">
@@ -109,17 +101,21 @@ const Navigation = () => {
                 </li>
               </ul>
             </li>
-            
-            <li className={`nav-item dropdown ${activeDropdown === 'collections' ? 'active' : ''}`}>
-              <button 
-                className="nav-link dropdown-toggle" 
-                onClick={() => toggleDropdown('collections')}
-                aria-expanded={activeDropdown === 'collections'}
+
+            <li
+              className={`nav-item dropdown ${
+                activeDropdown === "collections" ? "active" : ""
+              }`}
+            >
+              <button
+                className="nav-link dropdown-toggle"
+                onClick={() => dispatch(toggleDropdown("collections"))}
+                aria-expanded={activeDropdown === "collections"}
               >
                 Kollektionen
                 <FaChevronDown className="dropdown-icon" />
               </button>
-              
+
               <ul className="dropdown-menu">
                 <li className="category-title">Kuratierte Auswahl</li>
                 <li className="dropdown-item">
@@ -144,47 +140,70 @@ const Navigation = () => {
                 </li>
                 <li className="dropdown-divider"></li>
                 <li className="dropdown-item">
-                  <Link to="/collections/all" className="dropdown-link view-all">
+                  <Link
+                    to="/collections/all"
+                    className="dropdown-link view-all"
+                  >
                     Alle Kollektionen ansehen
                   </Link>
                 </li>
               </ul>
             </li>
-            
+
             <li className="nav-item">
-              <Link to="/stories" className="nav-link">Produktgeschichten</Link>
+              <Link to="/stories" className="nav-link">
+                Produktgeschichten
+              </Link>
             </li>
-            
+
             <li className="nav-item">
-              <Link to="/sustainability" className="nav-link">Nachhaltigkeit</Link>
+              <Link to="/sustainability" className="nav-link">
+                Nachhaltigkeit
+              </Link>
             </li>
-            
+
             <li className="nav-item">
-              <Link to="/about" className="nav-link">Über uns</Link>
+              <Link to="/about" className="nav-link">
+                Über uns
+              </Link>
             </li>
           </ul>
-          
+
           <div className="nav-actions">
-            <Link to="/search" className="action-button search-button" aria-label="Suche">
+            <Link
+              to="/search"
+              className="action-button search-button"
+              aria-label="Suche"
+            >
               <FaSearch />
             </Link>
-            <Link to="/account" className="action-button account-button" aria-label="Konto">
+            <Link
+              to="/account"
+              className="action-button account-button"
+              aria-label="Konto"
+            >
               <FaUser />
             </Link>
-            <Link 
-              to="/wishlist" 
-              className={`action-button wishlist-button ${!hasWishlistItems ? 'disabled' : ''}`} 
+            <Link
+              to="/wishlist"
+              className={`action-button wishlist-button ${
+                !hasWishlistItems ? "disabled" : ""
+              }`}
               aria-label="Wunschliste"
-              onClick={e => !hasWishlistItems && e.preventDefault()}
+              onClick={(e) => !hasWishlistItems && e.preventDefault()}
             >
               <FaHeart />
-              {hasWishlistItems && <span className="badge">{wishlistItemCount}</span>}
+              {hasWishlistItems && (
+                <span className="badge">{wishlistItemCount}</span>
+              )}
             </Link>
-            <Link 
-              to="/cart" 
-              className={`action-button cart-button ${!hasCartItems ? 'disabled' : ''}`} 
+            <Link
+              to="/cart"
+              className={`action-button cart-button ${
+                !hasCartItems ? "disabled" : ""
+              }`}
               aria-label="Warenkorb"
-              onClick={e => !hasCartItems && e.preventDefault()}
+              onClick={(e) => !hasCartItems && e.preventDefault()}
             >
               <FaShoppingCart />
               {hasCartItems && <span className="badge">{cartItemCount}</span>}

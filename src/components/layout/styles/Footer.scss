@@ -59,45 +59,34 @@
     flex: 0 0 25%;
     padding-right: 2rem;
     margin-bottom: 2rem;
-
+  
     @include respond-to(medium) {
       flex: 0 0 100%;
       padding-right: 0;
       text-align: center;
       margin-bottom: 3rem;
     }
+  
 
-    .logo-text {
-      font-family: var(--font-family-heading);
-      font-weight: var(--font-weight-bold);
-      font-size: 2rem;
-      line-height: 1;
+    .footer-logo-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       margin-bottom: 0.5rem;
-
-      .logo-retro {
-        color: var(--dark-color);
-        position: relative;
-
-        &::after {
-          content: "";
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 100%;
-          height: 4px;
-          background-color: var(--primary-color);
-          transform: scaleX(0.8);
-          transform-origin: left;
+  
+      img.footer-logo-image {
+        height: 150px;
+        width: auto;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+        animation: logoFadeIn 0.6s ease;
+  
+        &:hover {
+          transform: scale(1.05);
         }
       }
-
-      .logo-y {
-        color: var(--primary-color);
-        position: relative;
-        display: inline-block;
-      }
     }
-
+  
     .footer-slogan {
       font-weight: var(--font-weight-light);
       font-size: 0.9rem;
@@ -105,8 +94,22 @@
       margin-top: 0.5rem;
       color: var(--dark-color);
       opacity: 0.8;
+      text-align: center;
     }
   }
+  
+
+  @keyframes logoFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
 
   // Footer Sektionen Container
   .footer-sections {

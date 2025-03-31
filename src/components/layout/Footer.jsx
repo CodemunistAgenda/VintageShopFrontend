@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './styles/Footer.scss';
-import { 
-  FaInstagram, 
-  FaPinterestP, 
-  FaEnvelope, 
-  FaPhone, 
+import {
+  FaInstagram,
+  FaPinterestP,
+  FaEnvelope,
+  FaPhone,
   FaMapMarkerAlt,
-  FaTiktok 
+  FaTiktok
 } from 'react-icons/fa';
 
 function Footer() {
@@ -16,13 +16,12 @@ function Footer() {
       <div className="footer-container">
         <div className="footer-top">
           <div className="footer-logo">
-            <div className="logo-text">
-              <span className="logo-retro">Retro</span>
-              <span className="logo-y">y</span>
-            </div>
+            <Link to="/" className="footer-logo-link">
+              <img src="/logo.png" alt="Logo" className="footer-logo-image" />
+            </Link>
             <p className="footer-slogan">Vintage • Upcycled • Design</p>
           </div>
-          
+
           <div className="footer-sections">
             <div className="footer-section">
               <h4 className="footer-heading">Entdecken</h4>
@@ -33,7 +32,7 @@ function Footer() {
                 <li><Link to="/shop/limited">Limitierte Editionen</Link></li>
               </ul>
             </div>
-            
+
             <div className="footer-section">
               <h4 className="footer-heading">Informationen</h4>
               <ul className="footer-links">
@@ -43,7 +42,7 @@ function Footer() {
                 <li><Link to="/faq">Häufige Fragen</Link></li>
               </ul>
             </div>
-            
+
             <div className="footer-section">
               <h4 className="footer-heading">Service</h4>
               <ul className="footer-links">
@@ -53,7 +52,7 @@ function Footer() {
                 <li><Link to="/contact">Kontakt</Link></li>
               </ul>
             </div>
-            
+
             <div className="footer-section contact-section">
               <h4 className="footer-heading">Kontakt</h4>
               <ul className="contact-info">
@@ -70,7 +69,7 @@ function Footer() {
                   <address>Vintage Straße 42, 10115 Berlin</address>
                 </li>
               </ul>
-              
+
               <div className="social-links">
                 <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Instagram">
                   <FaInstagram />
@@ -85,7 +84,7 @@ function Footer() {
             </div>
           </div>
         </div>
-        
+
         <div className="footer-bottom">
           <div className="footer-bottom-links">
             <Link to="/terms">AGB</Link>
@@ -95,8 +94,7 @@ function Footer() {
           <p className="copyright">&copy; {new Date().getFullYear()} Retroy. Alle Rechte vorbehalten.</p>
         </div>
       </div>
-      
-      {/* Dekorative Elemente */}
+
       <div className="footer-decorative-line"></div>
     </footer>
   );
