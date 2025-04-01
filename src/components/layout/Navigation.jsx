@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import '../layout/styles/Navigation.scss';
+import React, { useState, useRef, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "../layout/styles/Navigation.scss";
 import {
   FaSearch,
   FaUser,
@@ -10,44 +10,32 @@ import {
   FaUserCircle,
   FaCog,
   FaSignOutAlt,
-} from 'react-icons/fa';
+} from "react-icons/fa";
 import {
   GiVintageRobot,
   GiRecycle,
   GiNotebook,
   GiDiamondTrophy,
-} from 'react-icons/gi';
-import { useAppContext } from '../../contexts/AppContext';
-import { useCart } from '../../contexts/CartContext';
-import { useUser } from '../../contexts/UserContext';
+} from "react-icons/gi";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleMenu, toggleDropdown } from "@/store/slices/uiSlice";
+import { logout } from "@/store/slices/authSlice";
 
 const Navigation = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  
-  // Verwende den AppContext für UI-Zustände
-  const { 
-    isMenuOpen, 
-    activeDropdown, 
-    scrolled, 
-    transparent, 
-    isMobile,
-    toggleMenu, 
-    toggleDropdown 
-  } = useAppContext();
-  
-  // Verwende den UserContext für Benutzer-Informationen und Wunschliste
-  const { user, isAuthenticated, logout, wishlist } = useUser();
-  
-  // Verwende den CartContext für Warenkorb-Informationen
-  const { cart } = useCart();
-  
-  // Bestimme den Status der Badges und Buttons
-  const cartItemCount = cart?.itemCount || 0;
-  const wishlistItemCount = wishlist?.length || 0;
+
+  const { isMenuOpen, activeDropdown, scrolled, transparent } = useSelector(
+    (state) => state.ui
+  );
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
+
+  const cartItemCount = useSelector((state) => state.cart.totalCount);
+  const wishlistItemCount = useSelector((state) => state.wishlist.items.length);
+
   const hasCartItems = cartItemCount > 0;
   const hasWishlistItems = wishlistItemCount > 0;
 
-  // Profil-Dropdown Status
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -56,20 +44,19 @@ const Navigation = () => {
   };
 
   const handleLogout = () => {
-    logout();
-    navigate('/');
+    dispatch(logout());
+    navigate("/");
   };
 
-  // Schließe das Dropdown, wenn außerhalb geklickt wird
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setDropdownOpen(false);
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
@@ -135,8 +122,7 @@ const Navigation = () => {
                 </li>
                 <li className="dropdown-item">
                   <Link to="/shop/limited" className="dropdown-link">
-                    <GiDiamondTrophy className="link-icon" /> Limitierte
-                    Editionen
+                    <GiDiamondTrophy className="link-icon" /> Limitierte Editionen
                   </Link>
                 </li>
               </ul>
@@ -179,10 +165,7 @@ const Navigation = () => {
                 </li>
                 <li className="dropdown-divider"></li>
                 <li className="dropdown-item">
-                  <Link
-                    to="/collections/all"
-                    className="dropdown-link view-all"
-                  >
+                  <Link to="/collections/all" className="dropdown-link view-all">
                     Alle Kollektionen ansehen
                   </Link>
                 </li>
@@ -234,31 +217,37 @@ const Navigation = () => {
                 {dropdownOpen && (
                   <div className="profile-dropdown">
                     <Link to="/profile">
-                      <FaUserCircle /> Profil
+                      <FaUserCircle /> Profile
                     </Link>
                     {user?.role === "admin" && (
                       <>
                         <Link to="/settings">
-                          <FaCog /> Einstellungen
+                          <FaCog /> Setting
                         </Link>
-                        <Link to="/dashboard">🛠 Admin-Panel</Link>
+                        <Link to="/dashboard">🛠 Admin Panel</Link>
                       </>
                     )}
                     <button onClick={handleLogout}>
-                      <FaSignOutAlt /> Abmelden
+                      <FaSignOutAlt /> Logout
                     </button>
                   </div>
                 )}
               </div>
             ) : (
-              <Link to="/account" className="action-button account-button" aria-label="Konto">
+              <Link
+                to="/account"
+                className="action-button account-button"
+                aria-label="Konto"
+              >
                 <FaUser />
               </Link>
             )}
 
-            <Link 
-              to="/wishlist" 
-              className={`action-button wishlist-button ${!hasWishlistItems ? 'disabled' : ''}`} 
+            <Link
+              to="/wishlist"
+              className={`action-button wishlist-button ${
+                !hasWishlistItems ? "disabled" : ""
+              }`}
               aria-label="Wunschliste"
               onClick={(e) => !hasWishlistItems && e.preventDefault()}
             >
