@@ -1,24 +1,29 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useRef, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import '../layout/styles/Navigation.scss';
 import {
   FaSearch,
   FaUser,
   FaHeart,
   FaShoppingCart,
-  FaChevronDown
+  FaChevronDown,
+  FaUserCircle,
+  FaCog,
+  FaSignOutAlt,
 } from 'react-icons/fa';
 import {
   GiVintageRobot,
   GiRecycle,
   GiNotebook,
-  GiDiamondTrophy
+  GiDiamondTrophy,
 } from 'react-icons/gi';
 import { useAppContext } from '../../contexts/AppContext';
 import { useCart } from '../../contexts/CartContext';
 import { useUser } from '../../contexts/UserContext';
 
 const Navigation = () => {
+  const navigate = useNavigate();
+  
   // Verwende den AppContext für UI-Zustände
   const { 
     isMenuOpen, 
@@ -30,28 +35,50 @@ const Navigation = () => {
     toggleDropdown 
   } = useAppContext();
   
+  // Verwende den UserContext für Benutzer-Informationen und Wunschliste
+  const { user, isAuthenticated, logout, wishlist } = useUser();
+  
   // Verwende den CartContext für Warenkorb-Informationen
   const { cart } = useCart();
-  
-  // Verwende den UserContext für Wunschlisten-Informationen
-  const { wishlist } = useUser();
   
   // Bestimme den Status der Badges und Buttons
   const cartItemCount = cart?.itemCount || 0;
   const wishlistItemCount = wishlist?.length || 0;
   const hasCartItems = cartItemCount > 0;
   const hasWishlistItems = wishlistItemCount > 0;
-  
+
+  // Profil-Dropdown Status
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  const handleProfileClick = () => {
+    setDropdownOpen((prev) => !prev);
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
+
+  // Schließe das Dropdown, wenn außerhalb geklickt wird
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
     <nav className={`navigation-header ${scrolled ? 'scrolled' : ''} ${transparent ? 'transparent' : ''}`}>
       <div className="navigation-container">
         <div className="logo-container">
           <Link to="/" className="logo">
-            <div className="logo-text">
-              <span className="logo-retro">Retro</span>
-              <span className="logo-y">y</span>
-            </div>
-            <div className="logo-tagline">Vintage • Upcycled • Design</div>
+            <img src="/logo.png" alt="Logo" className="site-logo" />
           </Link>
         </div>
 
@@ -168,9 +195,48 @@ const Navigation = () => {
             <Link to="/search" className="action-button search-button" aria-label="Suche">
               <FaSearch />
             </Link>
-            <Link to="/account" className="action-button account-button" aria-label="Konto">
-              <FaUser />
-            </Link>
+
+            {isAuthenticated ? (
+              <div className="profile-section" ref={dropdownRef}>
+                <button className="profile-button" onClick={handleProfileClick}>
+                  {user?.profileImage ? (
+                    <img
+                      src={user.profileImage}
+                      alt={user.name || "User"}
+                      className="profile-image"
+                      onError={(e) => (e.target.src = "/default-avatar.png")}
+                    />
+                  ) : (
+                    <FaUserCircle size={24} />
+                  )}
+                  <span>{user?.name || "User"}</span>
+                </button>
+
+                {dropdownOpen && (
+                  <div className="profile-dropdown">
+                    <Link to="/profile">
+                      <FaUserCircle /> Profil
+                    </Link>
+                    {user?.role === "admin" && (
+                      <>
+                        <Link to="/settings">
+                          <FaCog /> Einstellungen
+                        </Link>
+                        <Link to="/dashboard">🛠 Admin-Panel</Link>
+                      </>
+                    )}
+                    <button onClick={handleLogout}>
+                      <FaSignOutAlt /> Abmelden
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link to="/account" className="action-button account-button" aria-label="Konto">
+                <FaUser />
+              </Link>
+            )}
+
             <Link 
               to="/wishlist" 
               className={`action-button wishlist-button ${!hasWishlistItems ? 'disabled' : ''}`} 
