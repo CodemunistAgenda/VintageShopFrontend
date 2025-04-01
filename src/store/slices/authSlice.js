@@ -7,23 +7,24 @@ import {
 } from "@/services/storage";
 
 
-
+// 🔁 Universelle API-Funktion für asynchrone Anfragen
 const apiCall = async (method, url, data = null, rejectWithValue, config = {}) => {
   try {
-    console.log("🔁 API Call →", method.toUpperCase(), url); // 💡 hangi endpoint çağrılıyor
-    console.log("📦 Payload:", data); // 💡 gönderilen veri
+    console.log("🔁 API Call →", method.toUpperCase(), url); 
+    console.log("📦 Payload:", data); 
     const response = await API[method](url, data, config);
-    console.log("✅ Response:", response.data); // 💡 gelen cevap
+    console.log("✅ Response:", response.data); 
     return response.data;
   } catch (error) {
-    console.error("❌ API Error:", error.response || error); // 💡 hata detayı
-    return rejectWithValue(error.response?.data?.message || "❌ Bir hata oluştu.");
+    console.error("❌ API Error:", error.response || error); 
+    return rejectWithValue(error.response?.data?.message || "❌ Es ist ein Fehler aufgetreten.");
   }
 };
 
 
 //
 // 🔐 LOGIN
+// Asynchrone Aktion zum Einloggen eines Benutzers
 //
 export const login = createAsyncThunk(
   "auth/login",
@@ -32,7 +33,7 @@ export const login = createAsyncThunk(
 
     const { token } = response;
     if (!token) {
-      return rejectWithValue("❌ Giriş başarısız. Token alınamadı.");
+      return rejectWithValue("❌ Anmeldung fehlgeschlagen. Kein Token erhalten.");
     }
 
     setStoredToken(token);
@@ -40,45 +41,53 @@ export const login = createAsyncThunk(
   }
 );
 
+
 //
 // 📝 REGISTER
+// Asynchrone Aktion zum Registrieren eines neuen Benutzers
 //
-// REGISTER (authSlice.js)
 export const register = createAsyncThunk(
   "auth/register",
   async (userData, { rejectWithValue }) => {
-    const response = await apiCall("post", "/user/register", userData, rejectWithValue);
+    const { username, email, password } = userData; // Nur diese 3
+    const payload = { username, email, password };
+
+    const response = await apiCall("post", "/user/register", payload, rejectWithValue);
     return response.message;
   }
 );
 
 
+
 //
 // 🚪 LOGOUT
+// Setzt Authentifizierungsstatus zurück und entfernt gespeicherten Token
 //
 export const logout = createAsyncThunk("auth/logout", async () => {
   clearStoredToken();
   return null;
 });
 
+
 //
 // 🔄 AUTH SLICE
+// Redux-Slice zur Verwaltung von Authentifizierungszuständen
 //
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    token: getStoredToken(),
-    isAuthenticated: !!getStoredToken(),
-    loading: false,
-    error: null,
-    registerMessage: null,
+    token: getStoredToken(),                 // gespeicherter Token (falls vorhanden)
+    isAuthenticated: !!getStoredToken(),     // Status: Benutzer eingeloggt?
+    loading: false,                          // Status: Wird geladen?
+    error: null,                             // Fehlermeldung (falls vorhanden)
+    registerMessage: null,                   // Erfolgsnachricht bei Registrierung
   },
   reducers: {
     clearError: (state) => {
-      state.error = null;
+      state.error = null; // Setzt die Fehlermeldung zurück
     },
     clearRegisterMessage: (state) => {
-      state.registerMessage = null;
+      state.registerMessage = null; // Setzt die Registrierungsnachricht zurück
     },
   },
   extraReducers: (builder) => {
