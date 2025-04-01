@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Home.scss";
 import { 
@@ -16,6 +16,11 @@ import {
 } from "react-icons/gi";
 
 const Home = () => {
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="home-container">
       <main className="home-main">
@@ -235,7 +240,7 @@ const Home = () => {
           <div className="newsletter-content">
             <h2 className="newsletter-title">Vintage-Inspiration direkt in dein Postfach</h2>
             <p className="newsletter-text">
-              Melde dich für unseren Newsletter an und erhalte exklusive Angebote, Styling-Tipps und Nachrichten über neue Schätze.
+              Melde dich für unseren Newsletter an und erhalte exklusive Angebote, Styling-Tipps und Nachrichten über neuste Schätze.
             </p>
           </div>
           <form className="newsletter-form">
