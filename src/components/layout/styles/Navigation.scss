@@ -628,3 +628,21 @@
     }
   }
 }
+
+.badge {
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  border-radius: 50%;
+  padding: 0.2em 0.5em;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+}
+
+.action-button.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+
