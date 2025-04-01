@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from '@/store/slices/authSlice';
+import { login, clearError } from '@/store/slices/authSlice';
 import { toast } from 'react-toastify';
 import './LoginForm.scss';
 
@@ -20,19 +20,25 @@ const LoginForm = ({ switchTab }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
 
+  // ⬇️ Başarılı giriş bildirimi
   useEffect(() => {
     if (isAuthenticated) {
-      toast.success('Willkommen zurück!');
-      navigate('/dashboard');
+      setTimeout(() => {
+        toast.success('Willkommen zurück!');
+        navigate('/dashboard');
+      }, 100); // Toast gösterilsin diye küçük gecikme
     }
   }, [isAuthenticated, navigate]);
 
+  // ⬇️ Hata bildirimi
   useEffect(() => {
     if (error) {
       toast.error(error);
+      dispatch(clearError());
     }
-  }, [error]);
+  }, [error, dispatch]);
 
+  // ⬇️ Form doğrulama
   const validate = () => {
     const errs = {};
     if (!formData.email.trim()) {
@@ -77,6 +83,7 @@ const LoginForm = ({ switchTab }) => {
 
   return (
     <form className="auth-form" onSubmit={handleSubmit}>
+      {/* Email */}
       <div className="form-group">
         <label htmlFor="login-email">E-Mail</label>
         <div className="input-wrapper">
@@ -95,6 +102,7 @@ const LoginForm = ({ switchTab }) => {
         {errors.email && <div className="error-message">{errors.email}</div>}
       </div>
 
+      {/* Passwort */}
       <div className="form-group">
         <label htmlFor="login-password">Passwort</label>
         <div className="input-wrapper">
@@ -121,6 +129,7 @@ const LoginForm = ({ switchTab }) => {
         {errors.password && <div className="error-message">{errors.password}</div>}
       </div>
 
+      {/* Optionen */}
       <div className="form-options">
         <div className="remember-me">
           <input
@@ -138,10 +147,12 @@ const LoginForm = ({ switchTab }) => {
         </Link>
       </div>
 
+      {/* Buton */}
       <button type="submit" className="submit-button" disabled={loading}>
         {loading ? 'Wird angemeldet...' : 'Anmelden'}
       </button>
 
+      {/* Sekme değişimi */}
       <div className="alt-action">
         <p>
           Noch kein Konto?{' '}

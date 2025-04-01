@@ -1,8 +1,9 @@
 // src/App.jsx
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Home from "./pages/Home/Home";
-import AccountPage from "./pages/Account/Account";
-import DashboardPage from "./pages/Dashboard/DashboardPage";
+import DashboardPage from "./pages/Admin/DashboardPage";
 import Account from "./pages/Account/Account";
 import About from "./pages/About/About"; 
 import Layout from "./components/layout/Layout";
@@ -26,8 +27,12 @@ function App() {
           <Route path="/about" element={<About />} /> 
         </Route>
       </Routes>
+
+      {/* ✅ Toast message */}
+      <ToastContainer position="top-right" autoClose={3000} />
     </Router>
   );
 }
 
 export default App;
+

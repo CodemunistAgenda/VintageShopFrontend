@@ -21,16 +21,18 @@ const RegisterForm = ({ switchTab }) => {
   const [showConfirm, setShowConfirm] = useState(false);
   const [errors, setErrors] = useState({});
 
-  // Erfolgsmeldung bei erfolgreicher Registrierung
+  // ✅ Başarılı kayıt sonrası toast göster ve sonra login sekmesine geç
   useEffect(() => {
     if (registerMessage) {
-      toast.success(registerMessage);
-      dispatch(clearRegisterMessage());
-      setTimeout(() => switchTab("login"), 1500);
+      setTimeout(() => {
+        toast.success(registerMessage);
+        dispatch(clearRegisterMessage());
+        switchTab("login");
+      }, 100); // Küçük bir gecikme ile Toast'ın görünmesini sağla
     }
   }, [registerMessage, dispatch, switchTab]);
 
-  // Fehlermeldung anzeigen
+  // ❌ Hataları göster
   useEffect(() => {
     if (error) {
       toast.error(error);
@@ -38,7 +40,7 @@ const RegisterForm = ({ switchTab }) => {
     }
   }, [error, dispatch]);
 
-  // Formularvalidierung
+  // 🧠 Validierung
   const validate = () => {
     const errs = {};
 
@@ -73,14 +75,12 @@ const RegisterForm = ({ switchTab }) => {
     return errs;
   };
 
-  // Eingabewerte ändern
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     setErrors((prev) => ({ ...prev, [name]: undefined }));
   };
 
-  // Formular absenden
   const handleSubmit = async (e) => {
     e.preventDefault();
 
