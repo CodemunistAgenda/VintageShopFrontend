@@ -1,19 +1,6 @@
+// src/store/slices/productSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import API from "@/services/api";
-
-
-const apiCall = async (method, url, data = null, rejectWithValue, config = {}) => {
-  try {
-    const response = await API[method](url, data, config);
-    return response.data;
-  } catch (error) {
-    return rejectWithValue(
-      error.response?.data?.message || "❌ Ein Fehler ist aufgetreten."
-    );
-  }
-};
-
-
+import apiCall from "@/services/apiCall";
 
 // 🔄 Alle Produkte abrufen
 export const fetchProducts = createAsyncThunk(
@@ -69,9 +56,14 @@ export const deleteProduct = createAsyncThunk(
     apiCall("delete", `/products/${id}`, null, rejectWithValue)
 );
 
-//
+// 🔍 Produkt nach ID abrufen
+export const fetchProductById = createAsyncThunk(
+  "products/fetchProductById",
+  async (id, { rejectWithValue }) =>
+    apiCall("get", `/products/${id}`, null, rejectWithValue)
+);
+
 // 🧩 Slice-Konfiguration
-//
 const productSlice = createSlice({
   name: "product",
   initialState: {
@@ -80,6 +72,7 @@ const productSlice = createSlice({
     selectedCategory: "all",
     loading: false,
     error: null,
+    singleProduct: null,
   },
   reducers: {
     // 🔍 Produkte nach Kategorie filtern
@@ -147,7 +140,6 @@ const productSlice = createSlice({
         state.products = state.products.map((p) =>
           p._id === updated._id ? updated : p
         );
-
         state.filteredProducts =
           state.selectedCategory === "all"
             ? state.products
@@ -162,6 +154,22 @@ const productSlice = createSlice({
         const id = action.payload;
         state.products = state.products.filter((p) => p._id !== id);
         state.filteredProducts = state.filteredProducts.filter((p) => p._id !== id);
+      })
+
+      // 🔍 Einzelnes Produkt abrufen
+      .addCase(fetchProductById.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+        state.singleProduct = null;
+      })
+      .addCase(fetchProductById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.singleProduct = action.payload;
+      })
+      .addCase(fetchProductById.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+        state.singleProduct = null;
       });
   },
 });

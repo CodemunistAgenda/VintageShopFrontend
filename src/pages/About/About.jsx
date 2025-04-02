@@ -24,7 +24,7 @@ const About = () => {
   // Teammitglieder-Daten
   const teamMembers = [
     {
-      name: 'Orhan Günzel',
+      name: 'Orhan Güzel',
       role: 'Fullstack-Entwickler',
       description: 'Spezialist für die Integration von Frontend und Backend, mit Fokus auf API-Design und effiziente Datenübertragung.',
     },

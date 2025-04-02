@@ -165,7 +165,7 @@ const Navigation = () => {
                 </li>
                 <li className="dropdown-divider"></li>
                 <li className="dropdown-item">
-                  <Link to="/collections/all" className="dropdown-link view-all">
+                  <Link to="/collections/decades/all" className="dropdown-link view-all">
                     Alle Kollektionen ansehen
                   </Link>
                 </li>

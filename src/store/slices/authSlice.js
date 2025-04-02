@@ -12,7 +12,7 @@ import apiCall from "@/services/apiCall";
 export const login = createAsyncThunk(
   "auth/login",
   async (credentials, { rejectWithValue }) => {
-    const response = await apiCall("post", "/user/login", credentials, rejectWithValue);
+    const response = await apiCall("post", "/auth/login", credentials, rejectWithValue);
 
     const { token } = response;
     if (!token) {
@@ -33,7 +33,7 @@ export const register = createAsyncThunk(
     const { username, email, password } = userData;
     const payload = { username, email, password };
 
-    const response = await apiCall("post", "/user/register", payload, rejectWithValue);
+    const response = await apiCall("post", "/auth/register", payload, rejectWithValue);
     return response.message;
   }
 );
@@ -53,7 +53,7 @@ const authSlice = createSlice({
   name: "auth",
   initialState: {
     token: getStoredToken(),                   // gespeicherter Token
-    isAuthenticated: !!getStoredToken(),       // Login-Status
+    isAuthenticated: !!getStoredToken(),       // Login-Statuscredentials
     loading: false,                            // Ladeanzeige
     error: null,                               // Fehlermeldung
     registerMessage: null,                     // Erfolgsmeldung (Register)

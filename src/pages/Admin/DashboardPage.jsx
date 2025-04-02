@@ -1,13 +1,8 @@
-import React from 'react'
+import React from "react";
 
-function DashboardPage() {
-  return (
-    <div>
-    <h1>
-      Dashboard
-      </h1>
-    </div>
-  )
-}
+const Dashboard = () => {
+  return <h1>Admin Panel</h1>;
+};
 
-export default DashboardPage
+export default Dashboard;
+

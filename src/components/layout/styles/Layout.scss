@@ -15,7 +15,12 @@
 }
 
 .layout-main {
+  
+
   flex: 1 0 auto;
+  margin-top: 120px; // Platz für Header
+  padding: 0 20px;
+
 }
 
 // Header-Styling für Scroll-Verhalten

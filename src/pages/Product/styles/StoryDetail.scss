@@ -1,0 +1,30 @@
+.story-detail {
+    padding: 2rem;
+    max-width: 800px;
+    margin: auto;
+  
+    .story-image {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+    }
+  
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+  
+    .product-name {
+      font-style: italic;
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+  
+    .story-content p {
+      margin-bottom: 1rem;
+      line-height: 1.7;
+      color: #333;
+    }
+  }
+  
