@@ -1,0 +1,109 @@
+{
+  "navbar": {
+    "home": "Home",
+    "shop": "Shop",
+    "shopVintage": "Vintage Treasures",
+    "shopUpcycled": "Upcycled Products",
+    "shopDesigner": "Designer Collections",
+    "shopLimitierte": "Limited Editions",
+    "categories": "Categories",
+    "categoryFashion": "Fashion",
+    "categoryFurniture": "Furniture",
+    "collections": "Collections",
+    "collection60s": "60s Revival",
+    "collection70s": "70s Style",
+    "collection80s": "80s Vibes",
+    "collection90s": "90s Retro",
+    "collectionAll": "All Collections",
+    "storie": "Our Story",
+    "sustainability": "Sustainability",
+    "about": "About Us",
+    "login": "Login",
+    "register": "Register",
+    "slogan": "Vintage • Upcycled • Design"
+  },
+
+  "hero": {
+    "titleHighlight": "Vintage",
+    "titleRest": "vintage style",
+    "description": "Unique treasures and timeless designs for a sustainable lifestyle.",
+    "ctaCollections": "Explore Collections",
+    "ctaStory": "Our Story"
+  },
+  "featured": {
+    "title": "Featured Highlights",
+    "subtitle": "Our most popular finds this week",
+    "viewAll": "View all products"
+  },
+  "badge": {
+    "new": "New",
+    "bestseller": "Bestseller",
+    "limited": "Limited",
+    "designer": "Designer",
+    "highlight": "Highlight"
+  },
+  "values": {
+    "sectionTitle": "Our Values",
+    "sectionSubtitle": "What Makes Retroy Unique",
+    "sustainability": {
+      "title": "Sustainability",
+      "description": "We focus on reuse and resource-saving practices to reduce environmental impact."
+    },
+    "quality": {
+      "title": "Quality",
+      "description": "Each piece is carefully inspected to ensure long-lasting and timeless products."
+    },
+    "heritage": {
+      "title": "Heritage",
+      "description": "Our products tell stories from different eras and preserve cultural heritage."
+    }
+  },
+  "newsletter": {
+    "title": "Vintage inspiration straight to your inbox",
+    "text": "Sign up for our newsletter and get exclusive offers, styling tips, and updates on the latest treasures.",
+    "placeholder": "Your email address",
+    "button": "Subscribe"
+  },
+
+  "footer": {
+    "discover": "Discover",
+    "vintage": "Vintage Treasures",
+    "upcycled": "Upcycled Products",
+    "designer": "Designer Collections",
+    "limited": "Limited Editions",
+    "info": "Information",
+    "about": "About Us",
+    "sustainability": "Sustainability",
+    "stories": "Product Stories",
+    "faq": "FAQ",
+    "service": "Service",
+    "shipping": "Shipping & Delivery",
+    "returns": "Returns & Refunds",
+    "care": "Care Instructions",
+    "contact": "Contact",
+    "rights": "All rights reserved."
+  },
+
+ "categories": {
+  "heading": "Our Collections",
+  "subtitle": "Discover our carefully curated collections",
+  "discover": "Discover",
+  "vintage": {
+    "title": "Vintage Treasures",
+    "description": "Hand-picked pieces with history and character"
+  },
+  "upcycled": {
+    "title": "Upcycled Products",
+    "description": "Creatively revived materials with a new purpose"
+  },
+  "designer": {
+    "title": "Designer Collections",
+    "description": "Vintage-inspired creations by independent designers"
+  },
+  "limited": {
+    "title": "Limited Editions",
+    "description": "Exclusive collector's items in limited quantities"
+  }
+}
+
+}
