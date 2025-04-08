@@ -1,0 +1,56 @@
+:root {
+  --background: #ffffff;
+  --text: #171717;
+  --text-secondary: #555;
+  --primary: #d9a441;
+  --primary-hover: #c1902d;
+  --card-bg: #ffffff;
+  --section-bg: #fdf6f0;
+  --danger: #d95841;
+}
+
+[data-theme="dark"] {
+  --background: #0a0a0a;
+  --text: #ededed;
+  --text-secondary: #aaa;
+  --card-bg: #1a1a1a;
+  --section-bg: #111;
+}
+
+html,
+body {
+  background-color: var(--background);
+  color: var(--text);
+  font-family: 'Raleway', sans-serif;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+}
+
+p {
+  color: var(--text-secondary);
+}
+
+button {
+  font-family: inherit;
+  background-color: var(--primary);
+  color: var(--buttonText, white);
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--primary-hover);
+}

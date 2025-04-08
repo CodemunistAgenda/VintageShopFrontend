@@ -1,0 +1,106 @@
+{
+  "navbar": {
+    "home": "Anasayfa",
+    "shop": "Alışveriş",
+    "shopVintage": "Vintage Hazineler",
+    "shopUpcycled": "Geri Dönüştürülmüş Ürünler",
+    "shopDesigner": "Tasarım Koleksiyonları",
+    "shopLimitierte": "Sınırlı Ürünler",
+    "categories": "Kategoriler",
+    "categoryFashion": "Moda",
+    "categoryFurniture": "Mobilya",
+    "collections": "Koleksiyonlar",
+    "collection60s": "60'lar Yeniden",
+    "collection70s": "70'ler Stili",
+    "collection80s": "80'ler Ruhuyla",
+    "collection90s": "90'lar Retro",
+    "collectionAll": "Tüm Koleksiyonlar",
+    "storie": "Hikayemiz",
+    "sustainability": "Sürdürülebilirlik",
+    "about": "Hakkımızda",
+    "login": "Giriş Yap",
+    "register": "Kayıt Ol",
+    "slogan": "Vintage • Upcycled • Design"
+  },
+  "hero": {
+    "titleHighlight": "Vintage",
+    "titleRest": "yeniden keşfet",
+    "description": "Benzersiz hazineler ve zamansız tasarımlar ile sürdürülebilir bir yaşam tarzı.",
+    "ctaCollections": "Koleksiyonları Keşfet",
+    "ctaStory": "Hikayemiz"
+  },
+  "featured": {
+    "title": "Öne Çıkanlar",
+    "subtitle": "Bu haftanın en sevilen ürünleri",
+    "viewAll": "Tüm ürünleri görüntüle"
+  },
+  "badge": {
+    "new": "Yeni",
+    "bestseller": "Çok Satan",
+    "limited": "Sınırlı",
+    "designer": "Tasarım",
+    "highlight": "Öne çıkan"
+  },
+  "values": {
+    "sectionTitle": "Değerlerimiz",
+    "sectionSubtitle": "Retroy'u özel kılan nedir?",
+    "sustainability": {
+      "title": "Sürdürülebilirlik",
+      "description": "Çevresel etkileri azaltmak için yeniden kullanım ve kaynak tasarrufu odaklıyız."
+    },
+    "quality": {
+      "title": "Kalite",
+      "description": "Her ürün uzun ömürlü ve zamansız olması için özenle incelenir."
+    },
+    "heritage": {
+      "title": "Miras",
+      "description": "Ürünlerimiz farklı dönemlerden hikâyeler anlatır ve kültürel mirası korur."
+    }
+  },
+  "newsletter": {
+    "title": "Vintage ilhamlar gelen kutunuzda",
+    "text": "Bültenimize abone olun; özel fırsatlar, stil önerileri ve en yeni parçalar hakkında bilgi alın.",
+    "placeholder": "E-posta adresiniz",
+    "button": "Abone Ol"
+  },
+"footer":{
+  "discover": "Keşfet",
+  "vintage": "Vintage Hazineler",
+  "upcycled": "Geri Dönüştürülmüş Ürünler",
+  "designer": "Tasarımcı Koleksiyonları",
+  "limited": "Sınırlı Üretim",
+  "info": "Bilgiler",
+  "about": "Hakkımızda",
+  "sustainability": "Sürdürülebilirlik",
+  "stories": "Ürün Hikayeleri",
+  "faq": "SSS",
+  "service": "Hizmet",
+  "shipping": "Kargo ve Teslimat",
+  "returns": "İade ve Geri Ödeme",
+  "care": "Bakım Talimatları",
+  "contact": "İletişim",
+  "rights": "Tüm hakları saklıdır."
+},
+"categories": {
+  "heading": "Koleksiyonlarımız",
+  "subtitle": "Özenle seçilmiş koleksiyonlarımızı keşfedin",
+  "discover": "Keşfet",
+  "vintage": {
+    "title": "Vintage Hazineler",
+    "description": "Tarihi ve karakteri olan özenle seçilmiş parçalar"
+  },
+  "upcycled": {
+    "title": "Dönüştürülmüş Ürünler",
+    "description": "Yaratıcı şekilde yeniden hayat bulmuş malzemeler"
+  },
+  "designer": {
+    "title": "Tasarımcı Koleksiyonları",
+    "description": "Bağımsız tasarımcılardan vintage esintili kreasyonlar"
+  },
+  "limited": {
+    "title": "Sınırlı Üretim",
+    "description": "Sınırlı sayıda üretilmiş özel koleksiyon parçaları"
+  }
+}
+
+}
