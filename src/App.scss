@@ -1,0 +1,22 @@
+// App.scss
+// Hauptanwendungsstile
+// -----------------------------------------------------------------------------
+
+// Importiere die Basis-Stylesheets
+@use './styles/base/main' as *;
+
+// App-Komponenten-Stile
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+// Hauptinhalt-Container
+.content {
+  flex: 1 0 auto;
+  padding-top: var(--header-height);
+}
+
+// Fügen Sie hier weitere App-spezifische Stile hinzu
+// ...
