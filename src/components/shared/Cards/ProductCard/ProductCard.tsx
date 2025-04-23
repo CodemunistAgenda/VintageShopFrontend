@@ -1,1 +1,0 @@
-// Produkt Karte mit allen API abrufen aus der DB

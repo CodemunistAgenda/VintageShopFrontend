@@ -119,8 +119,6 @@
 ./src/pages/Sustainability/Sustainability.scss
 ./src/pages/Sustainability/Sustainability.tsx
 ./src/pages/TESTSEITE
-./src/pages/TESTSEITE/LandingPage.scss
-./src/pages/TESTSEITE/LandingPage.tsx
 ./src/routes
 ./src/routes/index.ts
 ./src/services
@@ -129,13 +127,7 @@
 ./src/store/index.ts
 ./src/styles
 ./src/styles/base
-./src/styles/base/_animations.scss
-./src/styles/base/_global.scss
-./src/styles/base/_mixins.scss
-./src/styles/base/_reset.scss
-./src/styles/base/_themes.scss
-./src/styles/base/_variables.scss
-./src/styles/base/main.scss
+./src/styles/base/abstracts
 ./src/tests
 ./src/types
 ./src/types/cssModules.d.ts
