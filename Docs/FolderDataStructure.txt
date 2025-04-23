@@ -2,6 +2,11 @@
 ./.env
 ./.env.example
 ./.gitignore
+./.husky
+./.husky/_
+./.husky/_/.gitignore
+./.husky/_/husky.sh
+./.husky/pre-commit
 ./.vscode
 ./.vscode/settings.json
 ./Docs
@@ -136,6 +141,7 @@
 ./src/types/cssModules.d.ts
 ./src/utils
 ./src/vite-env.d.ts
+./test.ts
 ./tsconfig.app.json
 ./tsconfig.json
 ./tsconfig.node.json
