@@ -141,9 +141,6 @@
 ./src/types/cssModules.d.ts
 ./src/utils
 ./src/vite-env.d.ts
-./test.ts
-./test2.ts
-./test3.ts
 ./tsconfig.app.json
 ./tsconfig.json
 ./tsconfig.node.json
