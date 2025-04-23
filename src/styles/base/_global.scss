@@ -14,7 +14,6 @@ html {
 body {
   font-family: v.$font-family-body;
   font-weight: v.$font-weight-regular;
-  color: v.$dark-color;
   background-color: v.$white-color;
   line-height: v.$line-height-normal;
   min-height: 100vh;
@@ -28,6 +27,7 @@ body {
 // Hauptinhalt wächst, damit Footer am Boden bleibt
 main {
   flex: 1 0 auto;
+  background-color: white;
 }
 
 // Typografie-Einstellungen
