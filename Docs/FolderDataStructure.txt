@@ -1,12 +1,23 @@
+<<<<<<< HEAD
 .
 ./.gitignore
 ./Docs
 ./Docs/FolderDataStructure.txt
+=======
+. 
+./.gitignore
+./Docs
+./Docs/FolderDataStructure.txt
+./Docs/package-info.md
+>>>>>>> Orhan
 ./Docs/Phase1-UI-Entwurf.md
 ./Docs/Phase2-UI-Entwurf.md
 ./Docs/README.md
 ./eslint.config.js
+<<<<<<< HEAD
 ./FolderDataStructure.txt
+=======
+>>>>>>> Orhan
 ./index.html
 ./package.json
 ./package-lock.json

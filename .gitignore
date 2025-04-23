@@ -1,5 +1,6 @@
 # Logs
-logs
+# Log-Dateien und Debug-Logs
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -7,6 +8,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+<<<<<<< HEAD
 node_modules
 dist
 dist-ssr
@@ -16,10 +18,52 @@ dist-ssr
 .vscode/*
 !.vscode/extensions.json
 .idea
+=======
+# Node modules und Build
+# Node.js-Module und Build-Ordner
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Editor directories and files
+# Dateien und Ordner von Entwicklungsumgebungen
+.vscode/ # Alle Dateien im .vscode-Ordner ignorieren
+!.vscode/extensions.json # Ausnahme: extensions.json nicht ignorieren
+.idea/
+>>>>>>> Orhan
 .DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+<<<<<<< HEAD
 src/pages/TESTSEITE/
+=======
+src/pages/TESTSEITE/ # Ignoriere die TESTSEITE-Seite im src/pages-Ordner
+.env # Umgebungsvariablen-Datei
+
+# Build files
+# Build-Ordner
+/build/
+
+# TypeScript build info
+# TypeScript-Build-Informationsdateien
+*.tsbuildinfo
+
+# System Dateien
+# Systemdateien, die ignoriert werden sollen
+Thumbs.db
+.DS_Store
+
+# Lock-Dateien
+# Paketmanager-Lock-Dateien
+yarn.lock
+pnpm-lock.yaml
+
+# Node.js
+# Node.js-spezifische Ordner
+.npm/
+.nvm/
+>>>>>>> Orhan
