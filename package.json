@@ -8,8 +8,9 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "prepare": "husky install",
-    "generate:structure": "find . -type d -name 'node_modules' -prune -o -type d -name '.git' -prune -o -print | sort > ./Docs/FolderDataStructure.txt"
+    "test": "jest --watchAll",
+    "generate:structure": "find . -type d -name 'node_modules' -prune -o -type d -name '.git' -prune -o -print | sort > ./Docs/FolderDataStructure.txt",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.7.0",
