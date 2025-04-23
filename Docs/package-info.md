@@ -1,8 +1,5 @@
 # 🚀 React Projekt Konfiguration - Überblick
-<<<<<<< HEAD
 
-=======
->>>>>>> Orhan
 <style>
 body {
     background-color: #121212;
@@ -30,13 +27,9 @@ code {
     border-radius: 4px;
 }
 </style>
-<<<<<<< HEAD
 
 ## 📜 Projekt-Skripte
 
-=======
-## 📜 Projekt-Skripte
->>>>>>> Orhan
 | Skript | Befehl | Beschreibung |
 |:---:|:---:|:---:|
 | `dev` | Lokale Entwicklung | Startet Vite Entwicklungs-Server |
@@ -45,10 +38,7 @@ code {
 | `preview` | Lokale Vorschau | Vorschau des Builds |
 
 ## 🧱 Basis-Projektkonfiguration
-<<<<<<< HEAD
 
-=======
->>>>>>> Orhan
 | Schlüssel | Wert | Zweck |
 |:---:|:---:|:---:|
 | `"private"` | `true` | Verhindert versehentliches Veröffentlichen |
@@ -57,10 +47,7 @@ code {
 | `"name"` | `"react"` | Projektname |
 
 ## 📦 Kern-Abhängigkeiten
-<<<<<<< HEAD
 
-=======
->>>>>>> Orhan
 | Kategorie | Pakete | Zweck |
 |:---:|:---:|:---:|
 | UI / React | `react`, `react-dom` | React-Kernbibliothek |
@@ -76,10 +63,7 @@ code {
 | Beobachter | `react-intersection-observer` | Sichtbarkeits-Trigger |
 
 ## 🛠 Entwicklungs-Abhängigkeiten
-<<<<<<< HEAD
 
-=======
->>>>>>> Orhan
 | Kategorie | Pakete | Zweck |
 |:---:|:---:|:---:|
 | Testing | `jest`, `@testing-library/react`, `jest-dom` | Komponenten-Tests |
@@ -89,10 +73,7 @@ code {
 | Styles | `sass` | SCSS-Stylesheets |
 
 ## 💡 Merknotizen
-<<<<<<< HEAD
 
-=======
->>>>>>> Orhan
 | Thema | Eselsbrücke / Merkspruch |
 |:---:|:---:|
 | **dependencies** | Laufzeit – was du **im Code brauchst** |
@@ -100,9 +81,6 @@ code {
 | **vite** | 🏎️ Superschneller Entwicklungs-Server |
 | **SWC** | 🔥 Ultraleicht wie TypeScript auf Nitro |
 | **react-hook-form** | Formularsteuerung wie ein **Cockpit** |
-<<<<<<< HEAD
-| **i18next** | "Internationalization" – Sprache & Übersetzung |
-=======
 | **i18next** | "Internationalization" – Sprache & Übersetzung |
 
 ## 🔍 Zusätzliche Konfigurationsdetails
@@ -120,4 +98,3 @@ code {
 | Lazy Loading | `react-lazyload` | Verbesserte Initialisierungszeit |
 | Code-Splitting | Vite | Effiziente Ressourcennutzung |
 | Type Checking | TypeScript | Reduzierung von Laufzeit-Fehlern |
->>>>>>> Orhan

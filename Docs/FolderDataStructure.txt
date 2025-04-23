@@ -1,23 +1,16 @@
-<<<<<<< HEAD
 .
+./.env
+./.env.example
 ./.gitignore
-./Docs
-./Docs/FolderDataStructure.txt
-=======
-. 
-./.gitignore
+./.vscode
+./.vscode/settings.json
 ./Docs
 ./Docs/FolderDataStructure.txt
 ./Docs/package-info.md
->>>>>>> Orhan
 ./Docs/Phase1-UI-Entwurf.md
 ./Docs/Phase2-UI-Entwurf.md
 ./Docs/README.md
 ./eslint.config.js
-<<<<<<< HEAD
-./FolderDataStructure.txt
-=======
->>>>>>> Orhan
 ./index.html
 ./package.json
 ./package-lock.json
@@ -47,7 +40,6 @@
 ./src/components/Layout/Main/Main.module.scss
 ./src/components/Layout/Main/Main.tsx
 ./src/components/Layout/readme.md
-./src/components/readme.md
 ./src/components/shared
 ./src/components/shared/buttons
 ./src/components/shared/buttons/buttonNoToolkit.module.scss
@@ -74,9 +66,8 @@
 ./src/features
 ./src/features/auth
 ./src/features/cart
-./src/features/readme.md
+./src/features/cart/slice.ts
 ./src/hooks
-./src/hooks/readme.md
 ./src/index.scss
 ./src/main.tsx
 ./src/pages
@@ -110,7 +101,6 @@
 ./src/pages/NewsAlerts
 ./src/pages/NewsAlerts/NewsAlerts.scss
 ./src/pages/NewsAlerts/NewsAlerts.tsx
-./src/pages/readme.md
 ./src/pages/ReturnRefund
 ./src/pages/ReturnRefund/ReturnRefund.scss
 ./src/pages/ReturnRefund/ReturnRefund.tsx
@@ -128,13 +118,10 @@
 ./src/pages/TESTSEITE/LandingPage.tsx
 ./src/routes
 ./src/routes/index.ts
-./src/routes/readme.md
 ./src/services
 ./src/services/apiService.ts
-./src/services/readme.md
 ./src/store
 ./src/store/index.ts
-./src/store/readme.md
 ./src/styles
 ./src/styles/base
 ./src/styles/base/_animations.scss
@@ -144,13 +131,10 @@
 ./src/styles/base/_themes.scss
 ./src/styles/base/_variables.scss
 ./src/styles/base/main.scss
-./src/styles/readme.md
 ./src/tests
 ./src/types
 ./src/types/cssModules.d.ts
-./src/types/readme.md
 ./src/utils
-./src/utils/readme.md
 ./src/vite-env.d.ts
 ./tsconfig.app.json
 ./tsconfig.json
