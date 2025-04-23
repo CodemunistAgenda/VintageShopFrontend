@@ -51,6 +51,8 @@ declare module 'styled-components' {
       slow: string;
     };
     colors: {
+      [x: string]: Interpolation<FastOmit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>>;
+      backgroundIcon: Interpolation<FastOmit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>>;
       primary: string;
       primaryHover: string;
       secondary: string;

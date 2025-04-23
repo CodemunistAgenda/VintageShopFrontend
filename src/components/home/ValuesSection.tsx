@@ -38,7 +38,7 @@ const ValuesGrid = styled.div`
 
 const ValueCard = styled.div`
   position: relative;
-  background-color: #f9f9f9;
+  background-color:${({ theme }) => theme.colors.backgroundCard};
   padding: 3rem 2rem;
   border-radius: 4px;
   border-left: 4px solid ${({ theme }) => theme.colors.primary};
@@ -63,7 +63,7 @@ const IconCircle = styled.div`
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background-color: ${({ theme }) => theme.colors.background};
+  background-color: ${({ theme }) => theme.colors.backgroundIcon};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -80,7 +80,7 @@ const ValueTitle = styled.h3`
   margin-bottom: 1rem;
   position: relative;
   padding-bottom: 1rem;
-  color: black;
+  color: ${({ theme }) => theme.colors.textSecondary};
   
   &::after {
     content: '';

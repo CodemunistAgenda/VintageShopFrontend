@@ -36,15 +36,17 @@ const ProductGrid = styled.div`
 `;
 
 const ProductCard = styled.div`
-  background-color: #f9f9f9;
+  background-color:${({ theme }) => theme.colors.backgroundCard};
   border-radius: 4px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   
   &:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  transform: rotateX(-10deg) translateY(-20px) scale(1.01);
+  box-shadow: 
+  0 40px 60px -10px ${({ theme }) => theme.colors.boxShadowCard},
+  0 15px 0px -20px rgba(131, 131, 131, 0.1);
   }
 `;
 
@@ -82,7 +84,7 @@ const ProductCategory = styled.div`
 const ProductTitle = styled.h3`
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
-  color: black;
+  color: ${({ theme }) => theme.colors.textSecondary};
 `;
 
 const ProductPrice = styled.div`

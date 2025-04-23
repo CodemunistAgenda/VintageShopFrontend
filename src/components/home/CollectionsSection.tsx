@@ -7,6 +7,7 @@ import { GiVintageRobot, GiRecycle, GiNotebook, GiDiamondTrophy } from 'react-ic
 const SectionContainer = styled.section`
   padding: 5rem 2rem;
   text-align: center;
+  background-color:rgb(255, 255, 255) !important;
 `;
 
 const SectionTitle = styled.h2`
@@ -39,14 +40,37 @@ const CardsGrid = styled.div`
 `;
 
 const Card = styled.div`
-  background-color: #f9f9f9;
+  background-color: ${({ theme }) => theme.colors.backgroundCard};
   padding: 3rem 2rem;
   border-radius: 4px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  
+  transition: transform 0.6s ease-in-out, box-shadow 0.6s ease-in-out;
+  position: relative;
+  box-shadow: -2px 0px 5px lightgrey;
+
+  /* WICHTIG: Für echten 3D Effekt */
+  transform-style: preserve-3d;
+  perspective: 20px;
+
+  /* Kippachse am unteren Rand */
+  transform-origin: bottom center;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background-color: ${({ theme }) => theme.colors.primary};
+    transform: skewX(-10deg);
+    transform-origin: left;
+  }
+
   &:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  transform: rotateX(-10deg) translateY(-20px) scale(1.01);
+  box-shadow: 
+  0 40px 60px -10px ${({ theme }) => theme.colors.boxShadowCard},
+  0 15px 0px -20px rgba(131, 131, 131, 0.1);
   }
 `;
 
@@ -54,7 +78,7 @@ const IconCircle = styled.div`
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background-color: ${({ theme }) => theme.colors.background};
+  background-color: ${({ theme }) => theme.colors.backgroundIcon};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,7 +95,7 @@ const CardTitle = styled.h3`
   margin-bottom: 1rem;
   position: relative;
   padding-bottom: 1rem;
-  color: black;
+  color: ${({ theme }) => theme.colors.textSecondary};
   
   &::after {
     content: '';

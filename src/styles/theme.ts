@@ -16,6 +16,9 @@ interface ThemeColors {
   danger: string;
   collectionCard: string;
   sectionBackground: string;
+  backgroundIcon: string;
+  backgroundCard: string;
+  boxShadowCard: string;
 }
 
 interface Theme {
@@ -44,6 +47,7 @@ const theme: Record<ThemeMode, Theme> = {
       hero: "#121212",
       background: "#ffffff",
       backgroundSecondary: "#f7f7f2",
+      backgroundCard: "#ffffff",
       backgroundAlt: "#f9f9f9",
       text: "#121212",
       textSecondary: "#555555",
@@ -51,7 +55,9 @@ const theme: Record<ThemeMode, Theme> = {
       border: "#dddddd",
       danger: "#d95841",
       collectionCard: "#ffffff",
-      sectionBackground: "#f7f7f2"
+      sectionBackground: "#f7f7f2",
+      backgroundIcon: "#ffffff",
+      boxShadowCard: "#000000"
     },
     fonts: {
       heading: "'Playfair Display', serif",
@@ -108,16 +114,19 @@ const theme: Record<ThemeMode, Theme> = {
       secondary: "#c2d941",
       accent: "#d95841",
       hero: "#121212",
+      backgroundIcon: "#ffffff",
+      backgroundCard: "#343a40",
       background: "#121212",
       backgroundSecondary: "#1e1e1e",
       backgroundAlt: "#242424",
-      text: "#f7f7f2",
-      textSecondary: "#b0b0b0",
+      text: "#ffffff",
+      textSecondary: "#ffffff",
       textLight: "#ffffff",
       border: "#333333",
       danger: "#d95841",
       collectionCard: "#1e1e1e",
-      sectionBackground: "#121212"
+      sectionBackground: "#121212",
+      boxShadowCard: "#ffffff"
     },
     fonts: {
       heading: "'Playfair Display', serif",
